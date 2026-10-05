@@ -4,7 +4,7 @@ import { useMemo } from 'react'
  * ToolsMarquee
  *
  * Horizontally scrolling strip of brand logos + labels for the tools you work with.
- * PLACEHOLDER - swap the list below for your own tools (icons live in public/icons/).
+ * Swap the list below for your own tools (icons live in public/icons/).
  * The strip lives on the cream shader page, NOT inside a dark section.
  *
  * Implementation notes:
@@ -38,17 +38,11 @@ type Tool = {
 }
 
 export const tools: Tool[] = [
-  { name: 'Claude Code',          iconPath: '/icons/claude-code-logo.png' },
-  { name: 'Codex',                iconPath: '/icons/codex.svg',           color: '#000000' },
-  { name: 'Cursor',               iconPath: '/icons/cursor.svg',          color: '#0F172A' },
-  { name: 'Hermes AI',            iconPath: '/icons/nousresearch.svg',    color: '#18181B' },
-  { name: 'VS Code',              iconPath: '/icons/vscode.svg' },
   { name: 'GoHighLevel',          iconPath: '/icons/gohighlevel.png' },
-  { name: 'Lightspeed X-Series',  iconPath: '/icons/lightspeed.png' },
+  { name: 'n8n',                  iconPath: '/icons/ai/n8n.svg',          color: '#EA4B71' },
+  { name: 'Zapier',               iconPath: '/icons/ai/zapier.svg',       color: '#FF4F00' },
+  { name: 'Meta Ads Manager',     iconPath: '/icons/facebook.svg',        color: '#0866FF' },
   { name: 'Google Workspace',     iconPath: '/icons/googleworkspace.svg' },
-  { name: 'Zendesk',              iconPath: '/icons/zendesk.svg',         color: '#03363D' },
-  { name: 'Intercom',             iconPath: '/icons/intercom.svg',        color: '#1F8DED' },
-  { name: 'Slack',                iconPath: '/icons/slack.svg',           color: '#611F69' },
 ]
 
 export default function ToolsMarquee() {

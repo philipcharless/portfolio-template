@@ -130,13 +130,13 @@ export function AIStackSection() {
       data-reveal
     >
       <header className="projects__header">
-        <span className="projects__eyebrow">Placeholder category</span>
+        <span className="projects__eyebrow">Systems</span>
         <h2 className="projects__headline" id="projects-heading">
-          Your systems headline.
+          The systems behind the work.
         </h2>
         <p className="projects__subhead">
-          PLACEHOLDER - tell me what to put here: one line on the systems below.
-          Open a branch to see what sits under it.
+          Lead capture, AI setters, recruiting and onboarding systems running for
+          clients. Open a branch to see what sits under it.
         </p>
       </header>
       <div className="projects__panel" id="projects-panel">

@@ -351,8 +351,10 @@ export default function Autopilot({ compact = false, maxScale = 1 }: AutopilotPr
           Your workflow, end to end.
         </h2>
         <p className="autopilot__intro">
-          PLACEHOLDER - tell me what to put here: two or three sentences walking
-          through this example automation, from the trigger to each outcome.
+          A form submission fires the flow: a welcome email goes out and the CRM
+          updates. After a wait, reminders go by email and SMS until the lead
+          reaches a decision. Booked leads are won, leads not ready yet drop into
+          an AI follow-up drip, and the rest are closed out cleanly.
         </p>
       </header>
       )}

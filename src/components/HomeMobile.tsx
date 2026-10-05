@@ -47,11 +47,11 @@ export function HomeStats() {
 }
 
 const TILES = [
-  { n: '01', label: 'Projects', to: '/projects', title: 'PLACEHOLDER - projects headline', desc: 'Tell me what to put here.', img: '/placeholders/project-1.jpg' },
-  { n: '02', label: 'Services', to: '/services', title: 'PLACEHOLDER - services headline', desc: 'Tell me what to put here.', Icon: Stack },
+  { n: '01', label: 'Projects', to: '/projects', title: 'Selected work', desc: 'CRMs, automations and AI setters for real clients.', img: '/placeholders/project-1.jpg' },
+  { n: '02', label: 'Services', to: '/services', title: 'What I build', desc: 'CRMs, automation, AI setters, ads and snapshots.', Icon: Stack },
   { n: '03', label: 'Showcase', to: '/showcase', title: 'PLACEHOLDER - your flagship', desc: 'Tell me what to put here.', Icon: Coffee, accent: true },
-  { n: '04', label: 'Testimonials', to: '/testimonials', title: 'PLACEHOLDER - testimonials headline', desc: 'Tell me what to put here.', img: '/placeholders/testimonial-1.jpg' },
-  { n: '05', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'PLACEHOLDER - one line about you.', img: profile.avatarSrc },
+  { n: '04', label: 'Testimonials', to: '/testimonials', title: 'Clients', desc: 'Agencies and teams in the US, Australia and the UK.', img: '/placeholders/testimonial-1.jpg' },
+  { n: '05', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'Engineer turned systems integrator, automating since 2020.', img: profile.avatarSrc },
 ] as const
 
 export function HomeExplore() {

@@ -79,10 +79,10 @@ export function PlanPanel() {
   return (
     <div className="ppanel ppanel--frame">
       <FrameBar
-        host="yourdomain.com"
-        path="/sample-plan"
+        host="sourcesystems.ai"
+        path="/case-studies/fam-realty"
       />
-      <LiveFrame src="/placeholders/sample-plan.html" title="Sample document" />
+      <LiveFrame src="/placeholders/sample-plan.html" title="FAM Realty Group case study" />
     </div>
   )
 }
@@ -92,16 +92,16 @@ export function PlanPanel() {
 type Build = { id: string; label: string; src: string; path: string; Icon: Icon }
 
 const BUILDS: Build[] = [
-  { id: 'ticketing', label: 'Featured Project One', src: '/placeholders/sample-plan.html?doc=1', path: '/featured-one', Icon: Ticket },
-  { id: 'framework', label: 'Featured Project Two', src: '/placeholders/sample-plan.html?doc=2', path: '/featured-two', Icon: Robot },
-  { id: 'workflow', label: 'Featured Project Three', src: '/placeholders/sample-plan.html?doc=3', path: '/featured-three', Icon: FlowArrow },
+  { id: 'ticketing', label: 'Recruiting Funnel', src: '/placeholders/sample-plan.html?doc=1', path: '/case-studies/recruiting', Icon: Ticket },
+  { id: 'framework', label: 'AI Appointment Setter', src: '/placeholders/sample-plan.html?doc=2', path: '/case-studies/ai-setter', Icon: Robot },
+  { id: 'workflow', label: 'Med Spa Agency Snapshot', src: '/placeholders/sample-plan.html?doc=3', path: '/case-studies/medspa-snapshot', Icon: FlowArrow },
 ]
 
 /** One build, framed, open on arrival. */
 function BuildPanel({ build }: { build: Build }) {
   return (
     <div className="ppanel ppanel--frame">
-      <FrameBar host="yourdomain.com" path={build.path} />
+      <FrameBar host="sourcesystems.ai" path={build.path} />
       <LiveFrame src={build.src} title={build.label} />
     </div>
   )

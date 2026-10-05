@@ -6,7 +6,7 @@
  * render whatever shape they find here, so swapping in content is a data edit
  * and never a JSX edit. Keep the exported names and types stable.
  *
- * Every value below is a PLACEHOLDER. Shape rules:
+ * Shape rules:
  * - The root is you. Its children are the categories (branches).
  * - A branch with `status` is itself a system; a branch without one is a
  *   group whose children are the systems.
@@ -17,20 +17,15 @@
 
 import {
   Sparkle,
-  Coffee,
   Robot,
-  Article,
-  FilmSlate,
+  FunnelSimple,
+  Copy,
+  Megaphone,
   UsersThree,
-  Database,
-  SlackLogo,
-  MagnifyingGlass,
+  UserPlus,
+  ClipboardText,
   ChatCircleDots,
-  FlowArrow,
-  PhoneCall,
-  Browser,
   Broadcast,
-  Timer,
 } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 import { profile } from '@/data/profile'
@@ -56,145 +51,105 @@ export type StackNode = {
   children?: StackNode[]
 }
 
-const ANTHROPIC: StackLogo = { src: '/icons/anthropic.svg', name: 'Anthropic' }
-const OPENAI: StackLogo = { src: '/icons/openai.svg', name: 'OpenAI' }
-const SLACK: StackLogo = { src: '/icons/slack.svg', name: 'Slack' }
-const NOUS: StackLogo = { src: '/icons/nousresearch.svg', name: 'Nous Research' }
-
-const WHAT = 'PLACEHOLDER - tell me what to put here: one plain line on what this does.'
-const STACK = 'PLACEHOLDER - model, tools, where it runs'
+const GHL: StackLogo = { src: '/icons/gohighlevel.png', name: 'GoHighLevel' }
+const N8N: StackLogo = { src: '/icons/ai/n8n.svg', name: 'n8n' }
+const META: StackLogo = { src: '/icons/facebook.svg', name: 'Meta' }
 
 /** Single root: you. Branches are the categories. */
 export const aiStack: StackNode = {
   id: 'root',
   Icon: Sparkle,
   name: profile.name,
-  what: 'PLACEHOLDER - tell me what to put here: one line on the systems you build and run.',
-  stack: 'PLACEHOLDER - your brand',
+  what: 'Systems that capture leads, follow up on their own and book the appointment.',
+  stack: 'Source Systems',
   children: [
     {
-      id: 'project-a',
-      Icon: Coffee,
-      logos: [ANTHROPIC],
-      name: 'Project A',
-      what: WHAT,
-      stack: STACK,
-      status: 'Live',
-    },
-    {
-      id: 'category-one',
+      id: 'ai-setter',
       Icon: Robot,
-      name: 'Category One',
-      what: 'PLACEHOLDER - tell me what to put here: what the systems in this group have in common.',
-      children: [
-        {
-          id: 'project-b',
-          Icon: Article,
-          logos: [ANTHROPIC],
-          name: 'Project B',
-          what: WHAT,
-          stack: STACK,
-          status: 'Internal',
-        },
-        {
-          id: 'project-c',
-          Icon: FilmSlate,
-          logos: [OPENAI],
-          name: 'Project C',
-          what: WHAT,
-          stack: STACK,
-          status: 'Internal',
-        },
-        {
-          id: 'project-d',
-          Icon: UsersThree,
-          logos: [ANTHROPIC],
-          name: 'Project D',
-          what: WHAT,
-          stack: STACK,
-          status: 'Internal',
-        },
-      ],
-    },
-    {
-      id: 'category-two',
-      Icon: Database,
-      name: 'Category Two',
-      what: 'PLACEHOLDER - tell me what to put here: what the systems in this group have in common.',
-      children: [
-        {
-          id: 'project-e',
-          Icon: SlackLogo,
-          logos: [ANTHROPIC, SLACK],
-          name: 'Project E',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
-        },
-        {
-          id: 'project-f',
-          Icon: MagnifyingGlass,
-          logos: [ANTHROPIC],
-          name: 'Project F',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
-        },
-      ],
-    },
-    {
-      id: 'category-three',
-      Icon: ChatCircleDots,
-      name: 'Category Three',
-      what: 'PLACEHOLDER - tell me what to put here: what the systems in this group have in common.',
-      children: [
-        {
-          id: 'project-g',
-          Icon: FlowArrow,
-          logos: [ANTHROPIC],
-          name: 'Project G',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
-        },
-        {
-          id: 'project-h',
-          Icon: PhoneCall,
-          logos: [ANTHROPIC],
-          name: 'Project H',
-          what: WHAT,
-          stack: STACK,
-          status: 'Beta',
-        },
-        {
-          id: 'project-i',
-          Icon: Browser,
-          logos: [ANTHROPIC],
-          name: 'Project I',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
-        },
-      ],
-    },
-    {
-      id: 'project-j',
-      Icon: Broadcast,
-      logos: [NOUS],
-      name: 'Project J',
-      what: WHAT,
-      stack: STACK,
+      logos: [GHL],
+      name: 'AI Appointment Setter',
+      what: 'Replies to inbound leads in seconds, qualifies them and books them into the calendar, priced on break-even math.',
+      stack: 'CloseBot + HighLevel, real estate agencies',
       status: 'Live',
+    },
+    {
+      id: 'lead-systems',
+      Icon: FunnelSimple,
+      name: 'Lead capture and nurture',
+      what: 'Every lead gets captured, answered fast and followed up until they book.',
       children: [
         {
-          id: 'project-k',
-          Icon: Timer,
-          name: 'Project K',
-          what: WHAT,
-          stack: STACK,
+          id: 'lead-nurture',
+          Icon: FunnelSimple,
+          logos: [GHL, N8N],
+          name: 'Lead Capture and Nurture',
+          what: 'New leads land in the CRM instantly and get automated follow-up by email and SMS.',
+          stack: 'HighLevel + Make / n8n',
+          status: 'Live',
+        },
+        {
+          id: 'agency-snapshot',
+          Icon: Copy,
+          logos: [GHL],
+          name: 'Med Spa Agency Snapshot',
+          what: 'One master system a US agency deploys for every new med spa client instead of rebuilding each time.',
+          stack: 'HighLevel snapshot, MedSpa Max',
+          status: 'Live',
+        },
+        {
+          id: 'meta-ads',
+          Icon: Megaphone,
+          logos: [META, GHL],
+          name: 'Ads into the CRM',
+          what: 'Facebook and Instagram campaigns wired straight into the CRM and follow-up, so ad spend turns into appointments.',
+          stack: 'Meta Ads Manager + HighLevel',
           status: 'Live',
         },
       ],
+    },
+    {
+      id: 'recruiting',
+      Icon: UsersThree,
+      name: 'Recruiting and onboarding',
+      what: 'Candidates get found, screened, booked and onboarded without living in someone\'s inbox.',
+      children: [
+        {
+          id: 'agent-attraction',
+          Icon: UserPlus,
+          logos: [GHL],
+          name: 'Agent Attraction System',
+          what: 'Lead capture, follow-up and calendar booking for agent candidates at a San Diego mega team.',
+          stack: 'HighLevel + Make, FAM Realty Group',
+          status: 'Live',
+        },
+        {
+          id: 'onboarding-tracker',
+          Icon: ClipboardText,
+          logos: [GHL],
+          name: 'Onboarding Tracker',
+          what: 'Sales and operations see the same live onboarding status, with zero manual updates between them.',
+          stack: 'HighLevel + Make + ClickUp',
+          status: 'Live',
+        },
+        {
+          id: 'recruiting-bot',
+          Icon: ChatCircleDots,
+          logos: [META],
+          name: 'Recruiting Chatbot',
+          what: 'Qualifies every applicant and books them into interview slots: about 200 interviews a month on PHP 5,000 of ads.',
+          stack: 'FB Ads + chatbot + auto-scheduling',
+          status: 'Live',
+        },
+      ],
+    },
+    {
+      id: 'webinar',
+      Icon: Broadcast,
+      logos: [GHL],
+      name: 'Webinar Marketing System',
+      what: 'Registrations, reminders and post-webinar follow-up that run on their own.',
+      stack: 'EverWebinar + HighLevel',
+      status: 'Live',
     },
   ],
 }

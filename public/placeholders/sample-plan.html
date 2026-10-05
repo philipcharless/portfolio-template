@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sample Document - Placeholder</title>
+<title>Case Study - Source Systems</title>
 <meta name="robots" content="noindex">
 <style>
   :root {
@@ -74,52 +74,97 @@
   <main class="doc">
     <span class="tag">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 1.5h5.5L13 5v9.5H4z"/><path d="M9 1.5V5h4"/></svg>
-      <span id="doc-kind">Placeholder sample document</span>
+      <span id="doc-kind">Case study</span>
     </span>
-    <h1 id="doc-title">Your document title goes here.</h1>
-    <p class="lede">PLACEHOLDER - tell me what to put here: a one-line summary of this plan or case study, who it was for, and the result.</p>
+    <h1 id="doc-title">Agent attraction and onboarding system for a top mega team.</h1>
+    <p class="lede" id="doc-lede">A top-producing real estate team in San Diego County needed a repeatable way to recruit agents and get them producing fast, without recruiting living in someone's inbox.</p>
 
     <div class="meta">
-      <div><span>Client</span><b>Client Name</b></div>
-      <div><span>Timeline</span><b>0 weeks</b></div>
-      <div><span>Outcome</span><b>Result metric</b></div>
+      <div><span>Client</span><b id="doc-client">FAM Realty Group</b></div>
+      <div><span>Type</span><b id="doc-when">Real estate · 2023 to present</b></div>
+      <div><span>Stack</span><b id="doc-stack">HighLevel, Make, ClickUp</b></div>
     </div>
 
     <h2><i>01</i>The problem</h2>
-    <div class="hint"><strong>PLACEHOLDER - tell me what to put here:</strong> what was broken or missing before you started, in two or three sentences.</div>
+    <p id="doc-problem">Recruiting ran through people's inboxes, and the sales side and the operations side had no shared view of where each new agent stood.</p>
 
     <h2><i>02</i>The plan</h2>
-    <p class="hint"><strong>PLACEHOLDER - tell me what to put here:</strong> the steps you mapped out before building anything.</p>
-    <div class="flow" aria-label="Example flow">
-      <span>Step one</span><em>&rarr;</em>
-      <span>Step two</span><em>&rarr;</em>
-      <span>Decision?</span><em>&rarr;</em>
-      <span class="on">Result</span>
+    <p id="doc-plan">Map the candidate journey from first touch to first deal, then automate every hand-off in between.</p>
+    <div class="flow" aria-label="Flow" id="doc-flow">
+      <span>Candidate lead</span><em>&rarr;</em>
+      <span>Follow-up</span><em>&rarr;</em>
+      <span>Booked call</span><em>&rarr;</em>
+      <span class="on">Onboarded</span>
     </div>
 
     <h2><i>03</i>What was built</h2>
-    <div class="hint"><strong>PLACEHOLDER - tell me what to put here:</strong> the pieces you delivered.</div>
-    <ul class="list">
-      <li>Deliverable one</li>
-      <li>Deliverable two</li>
-      <li>Deliverable three</li>
+    <ul class="list" id="doc-built">
+      <li>Full recruiting system: lead capture, automated follow-up and calendar booking for agent candidates</li>
+      <li>Onboarding tracker that keeps sales and operations on the same live status, with zero manual updates between them</li>
+      <li>Ongoing lead capture and nurture system for the team's buyer and seller pipeline</li>
     </ul>
 
     <h2><i>04</i>Results</h2>
-    <div class="hint"><strong>PLACEHOLDER - tell me what to put here:</strong> the numbers or the change the client saw afterwards.</div>
+    <p id="doc-results">Recruiting runs as a repeatable system instead of an inbox, and new agents move from candidate to onboarded with every step tracked.</p>
 
-    <footer>This is a placeholder page shipped with the template. Replace public/placeholders/sample-plan.html with your own document.</footer>
+    <footer>Philip Charles Bumanglag · Source Systems · philip@sourcesystems.ai</footer>
   </main>
   <script>
-    // ?doc=N labels the page for the featured-project panels that reuse it.
+    // ?doc=N swaps in the case study for each featured-project panel.
     (function () {
-      var n = new URLSearchParams(location.search).get('doc');
-      var names = { '1': 'Featured Project One', '2': 'Featured Project Two', '3': 'Featured Project Three' };
-      if (!n || !names[n]) return;
-      var kind = document.getElementById('doc-kind');
-      var title = document.getElementById('doc-title');
-      if (kind) kind.textContent = 'Placeholder - ' + names[n];
-      if (title) title.textContent = names[n] + ': your page goes here.';
+      var docs = {
+        '1': {
+          title: '200 interviews a month on a PHP 5,000 ad budget.',
+          lede: 'A life insurance manager needed a steady stream of applicants to grow his team and qualify for promotion to Branch Manager. Manual screening was eating his week.',
+          client: 'Life insurance manager', when: 'Insurance recruiting', stack: 'FB Ads, chatbot, auto-scheduling',
+          problem: 'Every applicant had to be screened by hand, so growing the team meant losing the week to screening calls.',
+          plan: 'Pull applicants in with low-cost ads, let a chatbot do the screening, and book only qualified people into interview slots.',
+          flow: ['FB ad', 'Chatbot', 'Qualified?', 'Interview booked'],
+          built: ['Ad campaigns that consistently pulled in applicants at low cost', 'A chatbot that qualified every applicant automatically and booked them straight into interview slots'],
+          results: 'About 200 interviews a month on PHP 5,000 a month of ad spend.'
+        },
+        '2': {
+          title: 'Inbound AI appointment setter with real unit economics.',
+          lede: 'AI setters are easy to demo and easy to lose money on. This one needed to book appointments and make financial sense at real lead volumes.',
+          client: 'Real estate agencies', when: 'AI + CRM', stack: 'CloseBot, HighLevel',
+          problem: 'Inbound leads needed an answer in seconds, but an AI setter priced on hype loses money once lead volume is real.',
+          plan: 'Train the assistant on the offer, then model cost per lead at each volume before setting a price.',
+          flow: ['Inbound lead', 'AI reply', 'Qualified?', 'Booked'],
+          built: ["AI assistant trained on the client's offer, objections and booking rules", 'Break-even analysis and cost tiers across lead volumes, so the offer is priced on math, not vibes', 'Partner-facing document explaining the economics in plain language'],
+          results: 'An AI setter that books appointments with pricing backed by break-even math at every lead volume.'
+        },
+        '3': {
+          title: 'Agency snapshot powering lead gen for med spas.',
+          lede: 'A US digital marketing agency serving med spa businesses needed one master system it could deploy for every new client instead of rebuilding from scratch each time.',
+          client: 'MedSpa Max', when: 'Agency · 2024', stack: 'HighLevel snapshot',
+          problem: 'Every new med spa client meant rebuilding the same lead capture and nurture system by hand.',
+          plan: 'Build the system once as a snapshot, then deploy and support it per client account.',
+          flow: ['Master build', 'Snapshot', 'New client', 'Deployed'],
+          built: ["The agency's main snapshot: automated lead capture and nurture, ready to deploy per client", 'Ongoing automations and integrations tech support across client accounts'],
+          results: 'New clients start on a proven system on day one instead of a fresh build.'
+        }
+      };
+      var d = docs[new URLSearchParams(location.search).get('doc')];
+      if (!d) return;
+      var set = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
+      set('doc-title', d.title); set('doc-lede', d.lede); set('doc-client', d.client);
+      set('doc-when', d.when); set('doc-stack', d.stack); set('doc-problem', d.problem);
+      set('doc-plan', d.plan); set('doc-results', d.results);
+      var flow = document.getElementById('doc-flow');
+      if (flow) {
+        flow.textContent = '';
+        d.flow.forEach(function (step, i) {
+          if (i) { var em = document.createElement('em'); em.innerHTML = '&rarr;'; flow.appendChild(em); }
+          var sp = document.createElement('span'); sp.textContent = step;
+          if (i === d.flow.length - 1) sp.className = 'on';
+          flow.appendChild(sp);
+        });
+      }
+      var built = document.getElementById('doc-built');
+      if (built) {
+        built.textContent = '';
+        d.built.forEach(function (b) { var li = document.createElement('li'); li.textContent = b; built.appendChild(li); });
+      }
     })();
   </script>
 </body>

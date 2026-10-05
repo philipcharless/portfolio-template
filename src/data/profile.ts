@@ -10,7 +10,7 @@
  * other files in src/data/ and at the top of each view component.
  */
 
-import { Briefcase, SealCheck, Clock, type Icon } from '@/components/slab'
+import { Briefcase, CalendarCheck, Clock, type Icon } from '@/components/slab'
 
 export type SocialLink = {
   label: string
@@ -46,31 +46,33 @@ export type Profile = {
 }
 
 export const profile: Profile = {
-  name: 'Your Name',
-  firstName: 'Your Name',
-  handle: '@yourhandle',
-  role: 'PLACEHOLDER - your title',
+  name: 'Philip Charles Bumanglag',
+  firstName: 'Philip',
+  handle: '@sourcesystems',
+  role: 'Systems Integrator & Automation Specialist',
   avatarSrc: '/avatar.svg',
-  verifiedLabel: 'PLACEHOLDER - what the tick means (e.g. a certification)',
-  email: 'you@example.com',
-  location: 'PLACEHOLDER - your city or timezone',
+  verifiedLabel: 'BS Electronics Engineering, University of Saint Louis Tuguegarao',
+  email: 'philip@sourcesystems.ai',
+  location: 'Philippines',
   // Pick any icon from https://phosphoricons.com and import it above.
   stats: [
-    { value: '0 yrs', label: 'PLACEHOLDER', Icon: Briefcase },
-    { value: '#000', label: 'PLACEHOLDER', Icon: SealCheck },
-    { value: 'GMT+0', label: 'PLACEHOLDER', Icon: Clock },
+    { value: '6+ yrs', label: 'Automating since 2020', Icon: Briefcase },
+    { value: '200/mo', label: 'Interviews booked, one client', Icon: CalendarCheck },
+    { value: 'GMT+8', label: 'Works with US, AU, UK', Icon: Clock },
   ],
   // The intro types this line, then flies it into the Home headline.
   // Keep it short: two halves, 5-8 words total.
-  displayName: { line1: 'Your headline here.', line2: 'Keep it short.' },
+  displayName: { line1: 'Your business,', line2: 'on autopilot.' },
   hero: {
-    body: 'PLACEHOLDER - one line on what you do and who you do it for.',
+    body: 'GoHighLevel CRMs, workflow automations and AI appointment setters for agencies, real estate teams and service businesses.',
     portraitSrc: '/avatar.svg',
-    portraitAlt: 'Portrait placeholder',
+    portraitAlt: 'Portrait of Philip Charles Bumanglag',
   },
   socials: [
-    { label: 'Facebook profile', href: '#', iconPath: '/icons/facebook.svg' },
-    { label: 'LinkedIn profile', href: '#', iconPath: '/icons/linkedin.svg' },
-    { label: 'Discord profile', href: '#', iconPath: '/icons/discord.svg' },
+    {
+      label: 'LinkedIn profile',
+      href: 'https://www.linkedin.com/in/philip-charles-bumanglag-7b1453191/',
+      iconPath: '/icons/linkedin.svg',
+    },
   ],
 }

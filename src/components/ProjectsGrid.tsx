@@ -46,9 +46,9 @@ const FILTERS: { key: Cat | 'all'; label: string }[] = [
 
 /** Example tool marks, from public/icons. Swap for what you build with. */
 const GHL = '/icons/gohighlevel.png'
-const CLAUDE_CODE = '/icons/claude-code-logo.png'
-const CODEX = '/icons/ai/codex.svg'
-const HERMES = '/icons/ai/hermes.svg'
+const META = '/icons/facebook.svg'
+const N8N = '/icons/ai/n8n.svg'
+const ZAPIER = '/icons/ai/zapier.svg'
 const PLAY = '/icons/ai/googleplay.svg'
 const CHROME = '/icons/ai/googlechrome.svg'
 const EXPO = '/icons/ai/expo.svg'
@@ -66,14 +66,12 @@ const APP_SHOTS = [
   '/placeholders/extension-2.jpg',
 ]
 
-const BUILD_DESC = 'PLACEHOLDER - tell me what to put here: two lines on what this project is and the result it got.'
-
 /** The three featured builds: each its own card in the stack, each its own
  *  pop-up. */
 const BUILDS: Project[] = [
-  { id: 'ticketing', cat: 'work', index: '03', kicker: 'Placeholder category', title: 'Featured Project One', desc: BUILD_DESC, Icon: () => <Ticket size={20} weight="duotone" />, logos: [GHL], eyebrow: 'Featured build', Section: TicketingPanel, Preview: () => null },
-  { id: 'framework', cat: 'ai', index: '04', kicker: 'Placeholder category', title: 'Featured Project Two', desc: BUILD_DESC, Icon: () => <Robot size={20} weight="duotone" />, logos: [CLAUDE_CODE], eyebrow: 'Featured build', Section: FrameworkPanel, Preview: () => null },
-  { id: 'workflow', cat: 'ai', index: '05', kicker: 'Placeholder category', title: 'Featured Project Three', desc: BUILD_DESC, Icon: () => <FlowArrow size={20} weight="duotone" />, logos: [CLAUDE_CODE, CODEX, HERMES], eyebrow: 'Featured build', Section: WorkflowPanel, Preview: () => null },
+  { id: 'ticketing', cat: 'work', index: '03', kicker: 'Recruiting', title: '200 interviews a month on PHP 5,000', desc: 'Low-cost FB ads plus a chatbot that screens every applicant and books qualified ones into interview slots.', Icon: () => <Ticket size={20} weight="duotone" />, logos: [META], eyebrow: 'Featured build', Section: TicketingPanel, Preview: () => null },
+  { id: 'framework', cat: 'ai', index: '04', kicker: 'AI + CRM', title: 'AI appointment setter', desc: 'Replies to inbound real estate leads in seconds and books them, priced on break-even math, not hype.', Icon: () => <Robot size={20} weight="duotone" />, logos: [GHL], eyebrow: 'Featured build', Section: FrameworkPanel, Preview: () => null },
+  { id: 'workflow', cat: 'work', index: '05', kicker: 'Agency snapshot', title: 'Med spa lead gen snapshot', desc: 'One master HighLevel system MedSpa Max deploys for every new client instead of rebuilding from scratch.', Icon: () => <FlowArrow size={20} weight="duotone" />, logos: [GHL], eyebrow: 'Featured build', Section: WorkflowPanel, Preview: () => null },
 ]
 
 const leaves = (n: StackNode): StackNode[] => (n.children?.length ? n.children.flatMap(leaves) : [n])
@@ -99,13 +97,13 @@ function WorkflowsPreview() {
 function PlanPreview() {
   return (
     <div className="bento__media bento__doc" aria-hidden="true">
-      <span className="bento__doc-eyebrow">Placeholder document</span>
-      <span className="bento__doc-title">Your document title here.</span>
+      <span className="bento__doc-eyebrow">Case study</span>
+      <span className="bento__doc-title">Agent attraction for a San Diego mega team.</span>
       <span className="bento__doc-flow">
-        <i>Step</i>
-        <i>Step</i>
-        <i>Step?</i>
-        <i className="is-on">Result</i>
+        <i>Lead</i>
+        <i>Follow-up</i>
+        <i>Booked?</i>
+        <i className="is-on">Onboarded</i>
       </span>
       <span className="bento__doc-line" />
       <span className="bento__doc-line bento__doc-line--short" />
@@ -163,9 +161,9 @@ function AppsPreview() {
 
 const PROJECTS: Project[] = [
   { id: 'workflows', cat: 'work', index: '01', title: 'Project Title', desc: 'PLACEHOLDER - tell me what to put here: what these screens show.', Icon: FlowIcon, logos: [GHL], eyebrow: 'Screenshots', Section: AutomationsPanel, span: 2, Preview: WorkflowsPreview },
-  { id: 'plan', cat: 'work', index: '02', title: 'Sample Document', desc: 'PLACEHOLDER - tell me what to put here: the document this opens.', Icon: PlanIcon, logos: [GHL], eyebrow: 'Sample document', Section: PlanPanel, Preview: PlanPreview },
+  { id: 'plan', cat: 'work', index: '02', title: 'FAM Realty Group', desc: 'Agent attraction and onboarding system for a top San Diego mega team. Open the case study.', Icon: PlanIcon, logos: [GHL], eyebrow: 'Case study', Section: PlanPanel, Preview: PlanPreview },
   { id: 'funnels', cat: 'sites', index: '06', title: 'Pages and sites', desc: 'PLACEHOLDER - the pages in this reel. Spin the reel.', Icon: GlobeIcon, logos: [GHL], eyebrow: 'Pages and sites', Section: BarrelPanel, Preview: FunnelsPreview },
-  { id: 'ai', cat: 'ai', index: '07', title: 'Your systems title here', desc: 'PLACEHOLDER - tell me what to put here: the systems you run.', Icon: SparkIcon, logos: [CLAUDE_CODE, CODEX, HERMES], eyebrow: 'Your systems', Section: AIWindow, Preview: AIPreview },
+  { id: 'ai', cat: 'ai', index: '07', title: 'Systems I run', desc: 'Lead capture, AI setters, recruiting and onboarding systems, live for clients.', Icon: SparkIcon, logos: [GHL, N8N, ZAPIER], eyebrow: 'Systems', Section: AIWindow, Preview: AIPreview },
   { id: 'apps', cat: 'apps', index: '08', title: 'Apps and tools', desc: 'PLACEHOLDER - tell me what to put here: the apps and tools you ship.', Icon: DeviceIcon, logos: [PLAY, EXPO, CHROME], eyebrow: 'Your apps', Section: AppsWindow, span: 2, Preview: AppsPreview },
 ]
 
@@ -300,9 +298,9 @@ export default function ProjectsGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">Projects</span>
         <h1 className="pgrid__title" id="projects-title">
-          Your projects headline goes right here.
+          Systems built for real clients.
         </h1>
-        <p className="pgrid__lede">PLACEHOLDER - tell me what to put here: one line on the work below. Open a card to see it full size.</p>
+        <p className="pgrid__lede">CRMs, automations and AI setters for agencies, real estate and service businesses. Open a card to see it full size.</p>
       </header>
 
       {phone && (

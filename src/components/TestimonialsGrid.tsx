@@ -71,32 +71,29 @@ type Client = {
 const CLIENTS: Client[] = [
   {
     index: '01',
-    name: 'Client Name 1',
-    role: 'PLACEHOLDER ROLE',
+    name: 'FAM Realty Group',
+    role: 'System Automation Specialist · 2023 to present',
     daily:
-      'PLACEHOLDER - tell me what to put here: one or two sentences on what you run or build for this client day to day.',
-    work: ['Tag', 'Tag', 'Tag'],
-    logoSrc: '/placeholders/logo.svg',
+      'A top mega team in San Diego County. I run their agent attraction and onboarding system and the lead capture and nurture behind their buyer and seller pipeline.',
+    work: ['Recruiting', 'Onboarding', 'Nurture'],
     Icon: Gauge,
   },
   {
     index: '02',
-    name: 'Client Name 2',
-    role: 'PLACEHOLDER ROLE',
+    name: 'Invisible Ink Studio',
+    role: 'GHL Automations Specialist, FB Ads Strategist',
     daily:
-      'PLACEHOLDER - tell me what to put here: one or two sentences on what you run or build for this client day to day.',
-    work: ['Tag', 'Tag', 'Tag'],
-    logoSrc: '/placeholders/logo.svg',
+      'An aesthetic clinic in Sydney and Canberra. I built and ran their automated lead capture and nurture system alongside their Facebook ads.',
+    work: ['Lead capture', 'Nurture', 'FB Ads'],
     Icon: Robot,
   },
   {
     index: '03',
-    name: 'Client Name 3',
-    role: 'PLACEHOLDER ROLE',
+    name: 'Ecom Warrior Academy',
+    role: 'Automations Tech Support, Integrations Specialist',
     daily:
-      'PLACEHOLDER - tell me what to put here: one or two sentences on what you run or build for this client day to day.',
-    work: ['Tag', 'Tag', 'Tag'],
-    logoSrc: '/placeholders/logo.svg',
+      'An Australian dropshipping mentorship operating in AU and the UK. I handled marketing automations and sales pipeline coordination.',
+    work: ['Automations', 'Integrations', 'Pipeline'],
     Icon: Code,
   },
 ]
@@ -120,10 +117,10 @@ export default function TestimonialsGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">Testimonials</span>
         <h1 className="pgrid__title" id="testimonials-title">
-          Your testimonials headline.
+          Teams I build for.
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one line that introduces the videos and the client list.
+          What clients say, and the systems I run for them day to day.
         </p>
       </header>
 
