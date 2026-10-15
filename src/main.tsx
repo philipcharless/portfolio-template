@@ -39,6 +39,8 @@ import './styles/a11y.css'
 import './styles/apple.css'
 // Mobile motion + component pass on top of it (phone shell only).
 import './styles/mobile-pass.css'
+// Bento fly-in (hooks/useFlyIn.ts). Before perf.css, which must still win.
+import './styles/fly-in.css'
 // Last: the perf tiers only ever turn things OFF, so they must win.
 import './styles/perf.css'
 

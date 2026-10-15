@@ -5,6 +5,7 @@ import { SparkIcon } from './ProjectIcons'
 import { AIWindow, CaseStudyPanel } from './ProjectPanels'
 import { aiStack, type StackNode } from '@/data/ai-stack'
 import { useIsPhone } from '@/hooks/useMediaQuery'
+import { useFlyIn } from '@/hooks/useFlyIn'
 
 /**
  * Projects, as one viewport in Home's bento language: a glass panel of cards,
@@ -274,6 +275,8 @@ export default function ProjectsGrid() {
   const keep = (p: Project) => !phone || cat === 'all' || p.cats.includes(cat)
   const builds = BUILDS.filter(keep)
   const triggerRef = useRef<HTMLElement | null>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+  useFlyIn(gridRef, 'projects', ':scope > .bento__card, :scope > .bento__stack > .bento__card')
 
   const show = useCallback((p: Project, el: HTMLElement) => {
     triggerRef.current = el
@@ -365,7 +368,7 @@ export default function ProjectsGrid() {
           <CursorClick size={14} weight="duotone" />
           Click a card to open it
         </span>
-        <div className="bento bento--projects">
+        <div className="bento bento--projects" ref={gridRef}>
           {card(ATTRACTION)}
           {stack}
           {card(SYSTEMS)}

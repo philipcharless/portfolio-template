@@ -1,6 +1,8 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { CaretRight, Stack, FolderOpen, Quotes } from '@/components/slab'
 import { profile } from '@/data/profile'
+import { useFlyIn } from '@/hooks/useFlyIn'
 import QuickMenu from './QuickMenu'
 
 /**
@@ -51,12 +53,14 @@ const TILES = [
 ] as const
 
 export function HomeExplore() {
+  const tilesRef = useRef<HTMLUListElement>(null)
+  useFlyIn(tilesRef, 'home', '.htile')
   return (
     <>
       <div className="hsec">
         <h2 className="hsec__title">Explore</h2>
       </div>
-      <ul className="htiles" role="list">
+      <ul className="htiles" role="list" ref={tilesRef}>
         {TILES.map((t) => (
           <li key={t.to}>
             <Link to={t.to} className="htile">

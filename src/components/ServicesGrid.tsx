@@ -1,7 +1,8 @@
-import type { CSSProperties } from 'react'
+import { useRef, type CSSProperties } from 'react'
 import { MagnifyingGlass, Wrench, FileText, CheckCircle } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 import Autopilot, { TOOLS } from '@/components/Autopilot'
+import { useFlyIn } from '@/hooks/useFlyIn'
 
 /**
  * ServicesGrid - the Services view on one glass sheet.
@@ -127,6 +128,8 @@ function Marks({ logos }: { logos: string[] }) {
 /* ---------- The page ---------- */
 
 export default function ServicesGrid() {
+  const gridRef = useRef<HTMLUListElement>(null)
+  useFlyIn(gridRef, 'services', ':scope > li')
   return (
     <section className="pgrid sgrid" aria-labelledby="services-title">
       <header className="pgrid__head">
@@ -183,7 +186,7 @@ export default function ServicesGrid() {
             <h2 className="sgrid__offers-title">What I build.</h2>
             <p className="sgrid__offers-sub">Pick one, or combine them.</p>
           </div>
-          <ul className="bento sgrid__services" role="list">
+          <ul className="bento sgrid__services" role="list" ref={gridRef}>
             {SERVICES.map((s) => (
               <li key={s.title} className="bento__card sgrid__service">
                 <span className="bento__head">

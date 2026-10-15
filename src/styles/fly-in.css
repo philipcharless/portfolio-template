@@ -1,0 +1,41 @@
+/* ============================================================
+   BENTO FLY-IN
+   Driven by src/hooks/useFlyIn.ts. The hook sets, per tile:
+     --fly-x / --fly-y  start offset, pointing away from the tile's slot
+     --fly-delay        stagger, nearest the headline first
+   Transform and opacity only, so nothing here can shift the layout.
+   ============================================================ */
+
+/* Waiting for the grid to scroll into view: hidden, never in its final spot. */
+[data-fly='pending'] [data-fly-tile] {
+  opacity: 0;
+}
+
+/* `backwards` holds the start state through the delay, then lets go at the
+   end, so the tile's own hover transform works again once it has landed.
+   No `to` keyframe: the tile settles into whatever its resting style is. */
+[data-fly='run'] [data-fly-tile] {
+  animation: fly-in 700ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  animation-delay: var(--fly-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+@keyframes fly-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--fly-x, 0px), var(--fly-y, 0px)) scale(0.6);
+  }
+}
+
+/* The hook skips the animation for both of these; this is the safety net if
+   either switches on mid-flight. */
+@media (prefers-reduced-motion: reduce) {
+  [data-fly] [data-fly-tile] {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+html[data-a11y-motion='true'] [data-fly] [data-fly-tile] {
+  animation: none !important;
+  opacity: 1 !important;
+}

@@ -1,4 +1,4 @@
-import type React from 'react'
+import { useRef, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ArrowUpRight,
@@ -16,6 +16,7 @@ import {
 import { aiStack, type StackNode } from '@/data/ai-stack'
 import { CLIENTS } from '@/data/clients'
 import { profile } from '@/data/profile'
+import { useFlyIn } from '@/hooks/useFlyIn'
 
 /**
  * Home's showcase: one card per rail view, each an index of what that view
@@ -78,11 +79,13 @@ function CardHead({
 }
 
 export default function HomeBento() {
+  const gridRef = useRef<HTMLElement>(null)
+  useFlyIn(gridRef, 'home', ':scope > .bento__card')
   const half = Math.ceil(INDUSTRIES.length / 2)
   const industryRows = [INDUSTRIES.slice(0, half), INDUSTRIES.slice(half)]
 
   return (
-    <nav className="bento" aria-label="Explore the portfolio">
+    <nav className="bento" aria-label="Explore the portfolio" ref={gridRef}>
       {/* Projects: every build drifting up a clipped column. */}
       <Link to="/projects" className="bento__card bento__card--projects">
         <CardHead
@@ -140,7 +143,7 @@ export default function HomeBento() {
         <CardHead Icon={Stack} title="Services" desc="The GHL tech side, built, synced, and documented." />
         <ul className="bento__media bento__offers" role="list">
           {OFFERS.map(({ Icon, title, note }, i) => (
-            <li key={title} className="bento__offer" style={{ '--i': i } as React.CSSProperties}>
+            <li key={title} className="bento__offer" style={{ '--i': i } as CSSProperties}>
               <span className="bento__offer-tile">
                 <Icon size={15} weight="duotone" aria-hidden="true" />
               </span>

@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Play } from '@/components/slab'
 import { CLIENTS } from '@/data/clients'
+import { useFlyIn } from '@/hooks/useFlyIn'
 
 /**
  * TestimonialsGrid - the Testimonials view as a fixed viewport.
@@ -57,6 +58,8 @@ const CLIPS: Clip[] = [
 
 export default function TestimonialsGrid() {
   const [active, setActive] = useState(0)
+  const gridRef = useRef<HTMLDivElement>(null)
+  useFlyIn(gridRef, 'testimonials', '.tgrid__stage, .tgrid__picker, .tgrid__client')
   // The stage shows the clip's poster as cover art until it is asked to
   // play. A poster can fill the frame edge to edge whichever way the clip is
   // shot; a paused <video> cannot, and letterboxing one orientation into a
@@ -81,7 +84,7 @@ export default function TestimonialsGrid() {
         </p>
       </header>
 
-      <div className="home__glass tgrid__glass">
+      <div className="home__glass tgrid__glass" ref={gridRef}>
         {/* Left: one stage, two clips. */}
         <div className="tgrid__reel">
           <div className="tgrid__stage">
