@@ -60,7 +60,7 @@ export const profile: Profile = {
   ],
   // The intro types this line, then flies it into the Home headline.
   // Keep it short: two halves, 5-8 words total.
-  displayName: { line1: 'Systems that sync.', line2: 'Setters that book.' },
+  displayName: { line1: 'More booked calls.', line2: 'Less manual work.' },
   hero: {
     body: 'GoHighLevel systems, automations, and AI appointment setters for real estate teams and service businesses.',
     portraitSrc: '/about-desk.webp',
