@@ -415,3 +415,4 @@
   .cgrid__label, .cgrid__step-index { font-size: 12px; }
   .cgrid__hint { font-size: 12.5px; }
 }
+.cgrid__hint a { color: var(--orange-ink); font-weight: 600; }

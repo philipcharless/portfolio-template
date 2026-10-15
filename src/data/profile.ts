@@ -2,15 +2,13 @@
  * YOUR IDENTITY - start here.
  *
  * Everything that says who you are lives in this file: name, handle, photo,
- * socials, email and the Home headline. Every value below is a PLACEHOLDER.
- * Replace the text, or hand this file to your AI assistant and tell it what
- * to put in each field.
+ * socials, email, booking link and the Home headline.
  *
  * Page-specific copy (projects, services, testimonials, FAQs) lives in the
  * other files in src/data/ and at the top of each view component.
  */
 
-import { Briefcase, SealCheck, Clock, type Icon } from '@/components/slab'
+import { Briefcase, Handshake, Clock, type Icon } from '@/components/slab'
 
 export type SocialLink = {
   label: string
@@ -30,9 +28,9 @@ export type Profile = {
   role: string
   /** Square image. An SVG, WebP or PNG with a transparent background looks best. */
   avatarSrc: string
-  /** Tooltip / screen-reader label on the verified tick next to your name. */
-  verifiedLabel: string
   email: string
+  /** Where "Book a call" goes. */
+  bookingUrl: string
   location: string
   /** Three short proof facts shown on phones under the Home lede. */
   stats: Stat[]
@@ -46,31 +44,29 @@ export type Profile = {
 }
 
 export const profile: Profile = {
-  name: 'Your Name',
-  firstName: 'Your Name',
-  handle: '@yourhandle',
-  role: 'PLACEHOLDER - your title',
-  avatarSrc: '/avatar.svg',
-  verifiedLabel: 'PLACEHOLDER - what the tick means (e.g. a certification)',
-  email: 'you@example.com',
-  location: 'PLACEHOLDER - your city or timezone',
-  // Pick any icon from https://phosphoricons.com and import it above.
+  name: 'Philip Charles Bumanglag',
+  firstName: 'Philip',
+  handle: 'Partner at Source Systems',
+  role: 'Systems Integrator & Automation Specialist',
+  // Keep the preload in index.html pointing at the same file.
+  avatarSrc: '/me.webp',
+  email: 'philip@sourcesystems.ai',
+  bookingUrl: 'https://app.flowsuite.digital/widget/booking/9XqrrQudMAO0X4a1iLvI',
+  location: 'Philippines',
   stats: [
-    { value: '0 yrs', label: 'PLACEHOLDER', Icon: Briefcase },
-    { value: '#000', label: 'PLACEHOLDER', Icon: SealCheck },
-    { value: 'GMT+0', label: 'PLACEHOLDER', Icon: Clock },
+    { value: 'Since 2023', label: 'In automation', Icon: Briefcase },
+    { value: 'Partner', label: 'Source Systems', Icon: Handshake },
+    { value: 'GMT+8', label: 'Philippines', Icon: Clock },
   ],
   // The intro types this line, then flies it into the Home headline.
   // Keep it short: two halves, 5-8 words total.
-  displayName: { line1: 'Your headline here.', line2: 'Keep it short.' },
+  displayName: { line1: 'Systems that sync.', line2: 'Setters that book.' },
   hero: {
-    body: 'PLACEHOLDER - one line on what you do and who you do it for.',
-    portraitSrc: '/avatar.svg',
-    portraitAlt: 'Portrait placeholder',
+    body: 'GoHighLevel systems, automations, and AI appointment setters for real estate teams and service businesses.',
+    portraitSrc: '/about-desk.webp',
+    portraitAlt: 'Illustration of Philip at his desk, building a workflow on screen',
   },
   socials: [
-    { label: 'Facebook profile', href: '#', iconPath: '/icons/facebook.svg' },
-    { label: 'LinkedIn profile', href: '#', iconPath: '/icons/linkedin.svg' },
-    { label: 'Discord profile', href: '#', iconPath: '/icons/discord.svg' },
+    { label: 'LinkedIn profile', href: 'https://www.linkedin.com/in/philip-charles-bumanglag-7b1453191/', iconPath: '/icons/linkedin.svg' },
   ],
 }

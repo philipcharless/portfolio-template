@@ -2,199 +2,137 @@
  * The systems tree shown in the Projects "systems" pop-up (and as chips on
  * Home and in the Projects bento card).
  *
- * This file is the ONLY place node copy lives. AIStack.tsx and AIStackGrid.tsx
- * render whatever shape they find here, so swapping in content is a data edit
- * and never a JSX edit. Keep the exported names and types stable.
+ * This file is the ONLY place node copy lives. AIStackGrid.tsx renders
+ * whatever shape it finds here, so swapping in content is a data edit and
+ * never a JSX edit. Keep the exported names and types stable.
  *
- * Every value below is a PLACEHOLDER. Shape rules:
+ * Shape rules:
  * - The root is you. Its children are the categories (branches).
  * - A branch with `status` is itself a system; a branch without one is a
  *   group whose children are the systems.
- * - Status is what the thing actually does today: "Live" (in use by others),
- *   "Internal" (works, you use it), "Beta".
+ * - `status` is optional. Set it only when it is true today: "Live" (in use
+ *   by others), "Internal" (works, you use it), "Beta".
  * - Logo marks in AIStackGrid.tsx are keyed by the node `id` below.
  */
 
 import {
   Sparkle,
-  Coffee,
-  Robot,
-  Article,
-  FilmSlate,
   UsersThree,
-  Database,
-  SlackLogo,
-  MagnifyingGlass,
+  ArrowsClockwise,
+  UserPlus,
+  Buildings,
+  Robot,
   ChatCircleDots,
-  FlowArrow,
   PhoneCall,
-  Browser,
-  Broadcast,
-  Timer,
+  ChatText,
+  FileText,
+  Stack,
 } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 import { profile } from '@/data/profile'
 
 export type StackStatus = 'Live' | 'Internal' | 'Beta'
 
-/** A vendor mark, masked to a single ink colour so the row reads as one set
- *  rather than a rainbow of brand palettes. Only marks that already exist in
- *  public/icons are listed. */
-export type StackLogo = { src: string; name: string }
-
 export type StackNode = {
   id: string
   name: string
   /** One plain sentence a non-technical client understands. */
   what: string
-  /** Real stack / model / where it runs. Rendered small and muted. */
+  /** Real stack / where it runs. Rendered small and muted. */
   stack?: string
   status?: StackStatus
   /** Phosphor glyph for the card's mark tile. Every node has one. */
   Icon: Icon
-  logos?: StackLogo[]
   children?: StackNode[]
 }
-
-const ANTHROPIC: StackLogo = { src: '/icons/anthropic.svg', name: 'Anthropic' }
-const OPENAI: StackLogo = { src: '/icons/openai.svg', name: 'OpenAI' }
-const SLACK: StackLogo = { src: '/icons/slack.svg', name: 'Slack' }
-const NOUS: StackLogo = { src: '/icons/nousresearch.svg', name: 'Nous Research' }
-
-const WHAT = 'PLACEHOLDER - tell me what to put here: one plain line on what this does.'
-const STACK = 'PLACEHOLDER - model, tools, where it runs'
 
 /** Single root: you. Branches are the categories. */
 export const aiStack: StackNode = {
   id: 'root',
   Icon: Sparkle,
   name: profile.name,
-  what: 'PLACEHOLDER - tell me what to put here: one line on the systems you build and run.',
-  stack: 'PLACEHOLDER - your brand',
+  what: 'CRMs, automations, and AI that run the day-to-day for real estate teams and service businesses.',
+  stack: 'Source Systems',
   children: [
     {
-      id: 'project-a',
-      Icon: Coffee,
-      logos: [ANTHROPIC],
-      name: 'Project A',
-      what: WHAT,
-      stack: STACK,
-      status: 'Live',
-    },
-    {
-      id: 'category-one',
-      Icon: Robot,
-      name: 'Category One',
-      what: 'PLACEHOLDER - tell me what to put here: what the systems in this group have in common.',
+      id: 'ghl-systems',
+      Icon: Stack,
+      name: 'GHL Systems',
+      what: 'Full GoHighLevel builds: pipelines, sequences, and the SMS plumbing behind them.',
       children: [
         {
-          id: 'project-b',
-          Icon: Article,
-          logos: [ANTHROPIC],
-          name: 'Project B',
-          what: WHAT,
-          stack: STACK,
-          status: 'Internal',
-        },
-        {
-          id: 'project-c',
-          Icon: FilmSlate,
-          logos: [OPENAI],
-          name: 'Project C',
-          what: WHAT,
-          stack: STACK,
-          status: 'Internal',
-        },
-        {
-          id: 'project-d',
+          id: 'attraction-system',
           Icon: UsersThree,
-          logos: [ANTHROPIC],
-          name: 'Project D',
-          what: WHAT,
-          stack: STACK,
-          status: 'Internal',
+          name: 'Real Estate Attraction System',
+          what: 'A done-for-you agent recruiting system for real estate teams, from job board intake to training onboarding.',
+          stack: 'GHL, CloseBot, Make.com, Slack, ClickUp, Skool',
+        },
+        {
+          id: 'semaphore-sms',
+          Icon: ChatText,
+          name: 'GHL to Semaphore SMS',
+          what: 'GHL texting through a local Philippine SMS provider, with number formats and message segments handled.',
+          stack: 'GHL, Semaphore, Webhooks',
         },
       ],
     },
     {
-      id: 'category-two',
-      Icon: Database,
-      name: 'Category Two',
-      what: 'PLACEHOLDER - tell me what to put here: what the systems in this group have in common.',
+      id: 'integrations',
+      Icon: ArrowsClockwise,
+      name: 'Integrations & Syncs',
+      what: 'Make.com scenarios that keep two tools in step so nobody copies data by hand.',
       children: [
         {
-          id: 'project-e',
-          Icon: SlackLogo,
-          logos: [ANTHROPIC, SLACK],
-          name: 'Project E',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
+          id: 'clickup-sync',
+          Icon: ArrowsClockwise,
+          name: 'ClickUp to GHL Two-Way Sync',
+          what: 'Keeps a real estate team’s agent onboarding pipeline in sync between ClickUp and GoHighLevel.',
+          stack: 'Make.com, ClickUp, GHL',
         },
         {
-          id: 'project-f',
-          Icon: MagnifyingGlass,
-          logos: [ANTHROPIC],
-          name: 'Project F',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
+          id: 'client-onboarding',
+          Icon: UserPlus,
+          name: 'Automated Client Onboarding',
+          what: 'One survey submission creates the client’s GHL sub-account and a dedicated Slack channel.',
+          stack: 'Make.com, GHL API, Slack',
+        },
+        {
+          id: 'lofty-sync',
+          Icon: Buildings,
+          name: 'Lofty to GHL Lender Sync',
+          what: 'When a lender is assigned in Lofty, the buyer shows up in GHL as a contact automatically.',
+          stack: 'Lofty, Make.com, GHL',
         },
       ],
     },
     {
-      id: 'category-three',
-      Icon: ChatCircleDots,
-      name: 'Category Three',
-      what: 'PLACEHOLDER - tell me what to put here: what the systems in this group have in common.',
+      id: 'ai-agents',
+      Icon: Robot,
+      name: 'AI Agents',
+      what: 'AI that books, reschedules, and answers so the team does not have to.',
       children: [
         {
-          id: 'project-g',
-          Icon: FlowArrow,
-          logos: [ANTHROPIC],
-          name: 'Project G',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
+          id: 'ai-setters',
+          Icon: ChatCircleDots,
+          name: 'AI Appointment Setters',
+          what: 'CloseBot setters that book and reschedule calls without human input.',
+          stack: 'CloseBot, GHL',
         },
         {
-          id: 'project-h',
+          id: 'voice-ai',
           Icon: PhoneCall,
-          logos: [ANTHROPIC],
-          name: 'Project H',
-          what: WHAT,
-          stack: STACK,
-          status: 'Beta',
-        },
-        {
-          id: 'project-i',
-          Icon: Browser,
-          logos: [ANTHROPIC],
-          name: 'Project I',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
+          name: 'Voice AI Receptionist',
+          what: 'A voice AI receptionist scoped for a church, with warm transfer to staff.',
+          stack: 'Voice AI, LLMs',
         },
       ],
     },
     {
-      id: 'project-j',
-      Icon: Broadcast,
-      logos: [NOUS],
-      name: 'Project J',
-      what: WHAT,
-      stack: STACK,
-      status: 'Live',
-      children: [
-        {
-          id: 'project-k',
-          Icon: Timer,
-          name: 'Project K',
-          what: WHAT,
-          stack: STACK,
-          status: 'Live',
-        },
-      ],
+      id: 'documentation',
+      Icon: FileText,
+      name: 'Documentation as a Service',
+      what: 'Audits and documentation for existing GHL systems, so someone else can run them.',
+      stack: 'GHL, Claude',
     },
   ],
 }

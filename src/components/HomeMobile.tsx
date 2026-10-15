@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom'
-import { SealCheck, CaretRight, Play, Stack, Coffee } from '@/components/slab'
+import { CaretRight, Stack, FolderOpen, Quotes } from '@/components/slab'
 import { profile } from '@/data/profile'
 import QuickMenu from './QuickMenu'
 
 /**
  * Home on a phone, the parts the rail and the bento used to carry:
  *
- *   HomeProfile  avatar, name, verified mark, handle and the QuickMenu
- *                (theme + accessibility) - the rail's identity block, laid flat
+ *   HomeProfile  avatar, name, handle and the QuickMenu (theme +
+ *                accessibility) - the rail's identity block, laid flat
  *   HomeStats    three proof facts (profile.stats), each named by a glyph so
  *                it reads at a glance
- *   HomeExplore  one shelf card per rail view in a snap row, then the first
- *                testimonial as a video stage
+ *   HomeExplore  one shelf card per rail view in a snap row, then the
+ *                testimonials block
  */
 
 export function HomeProfile() {
@@ -19,10 +19,7 @@ export function HomeProfile() {
     <header className="hprofile">
       <img className="hprofile__avatar" src={profile.avatarSrc} alt="" width={56} height={56} />
       <div className="hprofile__who">
-        <span className="hprofile__name">
-          {profile.name}
-          <SealCheck size={16} weight="fill" className="hprofile__verified" aria-label={profile.verifiedLabel} />
-        </span>
+        <span className="hprofile__name">{profile.name}</span>
         <span className="hprofile__handle">
           {profile.handle} · {profile.role}
         </span>
@@ -47,11 +44,10 @@ export function HomeStats() {
 }
 
 const TILES = [
-  { n: '01', label: 'Projects', to: '/projects', title: 'PLACEHOLDER - projects headline', desc: 'Tell me what to put here.', img: '/placeholders/project-1.jpg' },
-  { n: '02', label: 'Services', to: '/services', title: 'PLACEHOLDER - services headline', desc: 'Tell me what to put here.', Icon: Stack },
-  { n: '03', label: 'Showcase', to: '/showcase', title: 'PLACEHOLDER - your flagship', desc: 'Tell me what to put here.', Icon: Coffee, accent: true },
-  { n: '04', label: 'Testimonials', to: '/testimonials', title: 'PLACEHOLDER - testimonials headline', desc: 'Tell me what to put here.', img: '/placeholders/testimonial-1.jpg' },
-  { n: '05', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'PLACEHOLDER - one line about you.', img: profile.avatarSrc },
+  { n: '01', label: 'Projects', to: '/projects', title: 'Systems I have built', desc: 'Recruiting systems, two-way syncs, and AI setters.', Icon: FolderOpen },
+  { n: '02', label: 'Services', to: '/services', title: 'Audit. Build. Document.', desc: 'GoHighLevel builds, automations, and AI setters.', Icon: Stack },
+  { n: '03', label: 'Testimonials', to: '/testimonials', title: 'Who I build for', desc: 'Real estate teams, agencies, and clinics.', img: '/testimonial-soon.jpg' },
+  { n: '04', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'Engineering background. Partner at Source Systems.', img: profile.avatarSrc },
 ] as const
 
 export function HomeExplore() {
@@ -63,7 +59,7 @@ export function HomeExplore() {
       <ul className="htiles" role="list">
         {TILES.map((t) => (
           <li key={t.to}>
-            <Link to={t.to} className={`htile${'accent' in t && t.accent ? ' htile--accent' : ''}`}>
+            <Link to={t.to} className="htile">
               {'img' in t ? (
                 <span className="htile__media"><img className="htile__img" src={t.img} alt="" loading="lazy" /></span>
               ) : (
@@ -88,15 +84,14 @@ export function HomeExplore() {
           </Link>
         </h2>
       </div>
-      <Link to="/testimonials" className="hproof" aria-label="Client testimonial. PLACEHOLDER - a one-line teaser for your best testimonial.">
+      <Link to="/testimonials" className="hproof" aria-label="Client testimonials">
         <span className="hproof__stage">
-          <img src="/placeholders/testimonial-1.jpg" alt="" loading="lazy" />
-          <span className="hproof__play" aria-hidden="true"><Play size={20} weight="fill" /></span>
-          <span className="hproof__dur" aria-hidden="true">0:00</span>
+          <img src="/testimonial-soon.jpg" alt="" loading="lazy" />
+          <span className="hproof__play" aria-hidden="true"><Quotes size={20} weight="fill" /></span>
         </span>
         <span className="hproof__copy">
-          <span className="hproof__title">PLACEHOLDER - tell me what to put here: a one-line teaser for your best testimonial.</span>
-          <span className="hproof__meta">PLACEHOLDER - client role</span>
+          <span className="hproof__title">Testimonials adding soon</span>
+          <span className="hproof__meta">Video testimonials from clients</span>
         </span>
       </Link>
     </>

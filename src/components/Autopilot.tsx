@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import {
   Lightning,
+  IdentificationCard,
   EnvelopeSimple,
   CalendarCheck,
   Clock,
@@ -51,18 +52,18 @@ type FlowNode = {
 // Two tiers: the chain across the top, the outcomes fanning out just below.
 const NODES: FlowNode[] = [
   // top chain
-  { id: 'n-form',     Icon: Lightning,     title: 'Trigger',        subtitle: 'Form submitted',    x: 6,   y: 36,  variant: 'trigger' },
-  { id: 'n-email',    Icon: EnvelopeSimple, title: 'Send Email',    subtitle: 'Action',            x: 176, y: 36 },
-  { id: 'n-booked',   Icon: CalendarCheck, title: 'Update CRM',     subtitle: 'Action',            x: 346, y: 36 },
-  { id: 'n-24hr',     Icon: Clock,         title: 'Wait',           subtitle: 'Delay step',        x: 516, y: 36 },
+  { id: 'n-form',     Icon: Lightning,     title: 'Applicant',      subtitle: 'Job board intake',   x: 6,   y: 36,  variant: 'trigger' },
+  { id: 'n-email',    Icon: IdentificationCard, title: 'Qualify',  subtitle: 'License, location',   x: 176, y: 36 },
+  { id: 'n-booked',   Icon: CalendarCheck, title: 'AI Setter',      subtitle: 'Books the call',     x: 346, y: 36 },
+  { id: 'n-24hr',     Icon: Clock,         title: 'Wait',           subtitle: 'Until the call',     x: 516, y: 36 },
   { id: 'n-1hr',      Icon: BellRinging,   title: 'Reminder',       subtitle: 'Email & SMS',       x: 686, y: 36 },
-  { id: 'n-call',     Icon: VideoCamera,   title: 'Decision',       subtitle: 'Condition gate',    x: 866, y: 36, variant: 'gate' },
+  { id: 'n-call',     Icon: VideoCamera,   title: 'Alignment Call', subtitle: 'Showed up?',        x: 866, y: 36, variant: 'gate' },
   // outcomes (one tier, fanning out of the decision gate)
-  { id: 'n-proposal', Icon: FileText,      title: 'Outcome A',      subtitle: 'Next action',       x: 56,  y: 268 },
-  { id: 'n-won',      Icon: Trophy,        title: 'Won',            subtitle: 'Goal reached',      x: 240, y: 268, variant: 'win' },
-  { id: 'n-maybe',    Icon: Hourglass,     title: 'Outcome B',      subtitle: 'Not ready yet',     x: 468, y: 268 },
-  { id: 'n-nurture',  Icon: Heart,         title: 'AI Step',        subtitle: 'Follow-up drip',    x: 652, y: 268 },
-  { id: 'n-lost',     Icon: XCircle,       title: 'Lost',           subtitle: 'Closed out',        x: 866, y: 268, variant: 'lost' },
+  { id: 'n-proposal', Icon: FileText,      title: 'Onboarding',     subtitle: 'Training flow',     x: 56,  y: 268 },
+  { id: 'n-won',      Icon: Trophy,        title: 'Joined',         subtitle: 'New agent',         x: 240, y: 268, variant: 'win' },
+  { id: 'n-maybe',    Icon: Hourglass,     title: 'Not Ready',      subtitle: 'Not yet',           x: 468, y: 268 },
+  { id: 'n-nurture',  Icon: Heart,         title: 'Nurture',        subtitle: 'Email & SMS',       x: 652, y: 268 },
+  { id: 'n-lost',     Icon: XCircle,       title: 'Not a Fit',      subtitle: 'Closed out',        x: 866, y: 268, variant: 'lost' },
 ]
 
 type LinkKind = 'solid' | 'dash' | 'loop'
@@ -76,7 +77,7 @@ const LINKS: Link[] = [
   { from: 'n-24hr',   to: 'n-1hr' },
   { from: 'n-1hr',    to: 'n-call' },
   // a loop back to an earlier step
-  { from: 'n-1hr',    to: 'n-booked', kind: 'loop', label: 'Loop Back' },
+  { from: 'n-1hr',    to: 'n-booked', kind: 'loop', label: 'Reschedule' },
   // decision outcomes (dashed dispatch)
   { from: 'n-call',   to: 'n-proposal', kind: 'dash' },
   { from: 'n-call',   to: 'n-maybe',    kind: 'dash' },
@@ -87,9 +88,9 @@ const LINKS: Link[] = [
 ]
 
 export const TOOLS: { Icon: Icon; label: string }[] = [
-  { Icon: Plug,           label: 'Your CRM' },
+  { Icon: Plug,           label: 'GoHighLevel' },
   { Icon: EnvelopeSimple, label: 'Email & SMS' },
-  { Icon: Sparkle,        label: 'AI Assistant' },
+  { Icon: Sparkle,        label: 'CloseBot' },
 ]
 
 const SVGNS = 'http://www.w3.org/2000/svg'
@@ -348,11 +349,11 @@ export default function Autopilot({ compact = false, maxScale = 1 }: AutopilotPr
       <header className="autopilot__head">
         <span className="autopilot__eyebrow">Live automation</span>
         <h2 id="autopilot-heading" className="autopilot__headline">
-          Your workflow, end to end.
+          Agent recruiting, end to end.
         </h2>
         <p className="autopilot__intro">
-          PLACEHOLDER - tell me what to put here: two or three sentences walking
-          through this example automation, from the trigger to each outcome.
+          An applicant comes in from a job board and is qualified by license, location,
+          and experience. An AI setter books the alignment call, and each outcome routes to onboarding or nurture.
         </p>
       </header>
       )}
@@ -364,12 +365,12 @@ export default function Autopilot({ compact = false, maxScale = 1 }: AutopilotPr
             <span className="autopilot__dot autopilot__dot--y" />
             <span className="autopilot__dot autopilot__dot--g" />
           </span>
-          <span className="autopilot__titlebar-label">Automation Workflow</span>
+          <span className="autopilot__titlebar-label">GoHighLevel Workflow</span>
         </div>
 
         <div className="autopilot__canvas">
           <p className="autopilot__caption">
-            Your flow caption, in one short line.
+            Real Estate Attraction System, recruiting flow.
           </p>
 
           <div className="autopilot__board" aria-hidden="true">

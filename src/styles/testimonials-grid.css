@@ -385,6 +385,10 @@
   .tgrid__picker { grid-template-columns: minmax(0, 1fr); }
   .tgrid__pick + .tgrid__pick { box-shadow: inset 0 1px 0 var(--line); }
   .tgrid__client { flex-direction: column; align-items: flex-start; }
+  /* Stacked, the body takes the row's width, and a long role wraps instead of
+     pushing the row past the screen. */
+  .tgrid__client-body { align-self: stretch; }
+  .tgrid__client-role { white-space: normal; }
 }
 
 @media (prefers-reduced-motion: reduce) {

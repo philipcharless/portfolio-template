@@ -1,10 +1,11 @@
 import { useMemo } from 'react'
+import { Robot, HouseLine, ChatText, GraduationCap, Microphone, type Icon } from '@/components/slab'
 
 /**
  * ToolsMarquee
  *
  * Horizontally scrolling strip of brand logos + labels for the tools you work with.
- * PLACEHOLDER - swap the list below for your own tools (icons live in public/icons/).
+ * The list below is the working stack (icons live in public/icons/).
  * The strip lives on the cream shader page, NOT inside a dark section.
  *
  * Implementation notes:
@@ -16,7 +17,7 @@ import { useMemo } from 'react'
  *        via a per-item `--brand-color` custom property. This lets us ship one
  *        black-shape file per brand and paint it with the brand color.
  *     2. Multi-color brand marks (PNG or multi-color SVG - GoHighLevel,
- *        Lightspeed, Claude Code, VS Code, Google Workspace) are rendered as
+ *        Claude Code, Google Workspace) are rendered as
  *        raw `<img>` tags because gradients/layered fills cannot be reduced to
  *        a single silhouette.
  *   The renderer picks the mode by whether a `color` is set: color -> mask,
@@ -32,23 +33,29 @@ import { useMemo } from 'react'
 
 type Tool = {
   name: string
-  iconPath: string
+  /** Logo file. Omit and set `Glyph` for tools with no mark in public/icons. */
+  iconPath?: string
   /** When set, the SVG silhouette is tinted via CSS mask. Omit for multi-color marks. */
   color?: string
+  /** Generic Phosphor glyph, for tools without a logo file. */
+  Glyph?: Icon
 }
 
 export const tools: Tool[] = [
-  { name: 'Claude Code',          iconPath: '/icons/claude-code-logo.png' },
-  { name: 'Codex',                iconPath: '/icons/codex.svg',           color: '#000000' },
-  { name: 'Cursor',               iconPath: '/icons/cursor.svg',          color: '#0F172A' },
-  { name: 'Hermes AI',            iconPath: '/icons/nousresearch.svg',    color: '#18181B' },
-  { name: 'VS Code',              iconPath: '/icons/vscode.svg' },
   { name: 'GoHighLevel',          iconPath: '/icons/gohighlevel.png' },
-  { name: 'Lightspeed X-Series',  iconPath: '/icons/lightspeed.png' },
-  { name: 'Google Workspace',     iconPath: '/icons/googleworkspace.svg' },
-  { name: 'Zendesk',              iconPath: '/icons/zendesk.svg',         color: '#03363D' },
-  { name: 'Intercom',             iconPath: '/icons/intercom.svg',        color: '#1F8DED' },
+  { name: 'Make.com',             iconPath: '/icons/make.svg',            color: '#6D00CC' },
+  { name: 'n8n',                  iconPath: '/icons/ai/n8n.svg',          color: '#EA4B71' },
+  { name: 'Zapier',               iconPath: '/icons/ai/zapier.svg',       color: '#FF4F00' },
+  { name: 'CloseBot',             Glyph: Robot },
+  { name: 'ClickUp',              iconPath: '/icons/clickup.svg',         color: '#7B68EE' },
   { name: 'Slack',                iconPath: '/icons/slack.svg',           color: '#611F69' },
+  { name: 'Lofty CRM',            Glyph: HouseLine },
+  { name: 'Meta Ads Manager',     iconPath: '/icons/meta.svg',            color: '#0467DF' },
+  { name: 'Google Workspace',     iconPath: '/icons/googleworkspace.svg' },
+  { name: 'Semaphore SMS',        Glyph: ChatText },
+  { name: 'Skool',                Glyph: GraduationCap },
+  { name: 'Claude Code',          iconPath: '/icons/claude-code-logo.png' },
+  { name: 'Voice AI',             Glyph: Microphone },
 ]
 
 export default function ToolsMarquee() {
@@ -60,14 +67,16 @@ export default function ToolsMarquee() {
     <section className="tools-marquee" aria-label="Tools I work with" data-reveal>
       <div className="tools-marquee__track" aria-hidden="true">
         {doubled.map((tool, i) => {
-          const useMask = tool.iconPath.endsWith('.svg') && !!tool.color
+          const useMask = !!tool.iconPath?.endsWith('.svg') && !!tool.color
           return (
             <div key={`${tool.name}-${i}`} className="tools-marquee__item">
               {/* A plain box on desktop (display: contents); on phones it is
                   the rounded app-icon tile - a masked icon cannot carry its
                   own background, so the tile needs its own element. */}
               <span className="tools-marquee__tile">
-                {useMask ? (
+                {tool.Glyph ? (
+                  <tool.Glyph className="tools-marquee__img tools-marquee__glyph" size={24} weight="duotone" aria-hidden="true" />
+                ) : useMask ? (
                   <span
                     className="tools-marquee__icon"
                     style={{

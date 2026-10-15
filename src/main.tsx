@@ -1,4 +1,4 @@
-import { StrictMode, lazy, Suspense } from 'react'
+import { StrictMode, lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
@@ -10,13 +10,9 @@ import { restorePrefs } from '@/lib/a11y'
 // Every route but Home is its own chunk: the first visit only pays for Home.
 const ProjectsView = lazy(() => import('@/views/ProjectsView'))
 const ServicesView = lazy(() => import('@/views/ServicesView'))
-const ShowcaseView = lazy(() => import('@/views/ShowcaseView'))
 const TestimonialsGrid = lazy(() => import('@/components/TestimonialsGrid'))
 const AboutGrid = lazy(() => import('@/components/AboutGrid'))
 const ContactGrid = lazy(() => import('@/components/ContactGrid'))
-const Privacy = lazy(() => import('@/components/Privacy'))
-const ToS = lazy(() => import('@/components/ToS'))
-const ThankYou = lazy(() => import('@/components/ThankYou'))
 import './styles/tokens.css'
 import './styles/global.css'
 import './styles/theme-glyph.css'
@@ -25,14 +21,12 @@ import './styles/theme-glyph.css'
 // equal-specificity rules are decided by source order.
 import './styles/sections.css'
 import './styles/extensions.css'
-import './styles/ai-stack.css'
 import './styles/shell.css'
 import './styles/rail.css'
 import './styles/home.css'
 import './styles/bento.css'
 import './styles/projects-grid.css'
 import './styles/services-grid.css'
-import './styles/showcase.css'
 import './styles/testimonials-grid.css'
 import './styles/about-grid.css'
 import './styles/contact-grid.css'
@@ -66,15 +60,11 @@ createRoot(container).render(
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<ProjectsView />} />
           <Route path="/services" element={<ServicesView />} />
-          <Route path="/showcase" element={<ShowcaseView />} />
           <Route path="/testimonials" element={<TestimonialsGrid />} />
           <Route path="/about" element={<AboutGrid />} />
           <Route path="/contact" element={<ContactGrid />} />
         </Route>
-        {/* Standalone pages: their own layout, no rail, document scroll. */}
-        <Route path="/privacy" element={<Suspense fallback={null}><Privacy /></Suspense>} />
-        <Route path="/terms" element={<Suspense fallback={null}><ToS /></Suspense>} />
-        <Route path="/thank-you" element={<Suspense fallback={null}><ThankYou /></Suspense>} />
+        {/* Anything else: the 404 page, outside the shell. */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

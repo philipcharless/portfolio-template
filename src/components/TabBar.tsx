@@ -5,8 +5,8 @@ import { motionReduced } from '@/lib/a11y'
 
 /**
  * The phone navigation: a bottom tab bar with Contact as the raised action
- * in the middle. Five slots for seven routes - Showcase and Testimonials
- * are reached from Home's explore row and from the pages that cite them.
+ * in the middle. Five slots for six routes - Testimonials is
+ * reached from Home's explore row.
  *
  * One pill marks the current tab and travels to the next one, stretching
  * toward it and settling (Liquid Glass). It skips Contact - the raised button

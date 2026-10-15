@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Study - Philip Bumanglag</title>
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --paper: #fbfaf6;
+    --ink: #14161c;
+    --muted: #5d6270;
+    --line: #e4e1d6;
+    --tint: #f2efe6;
+    --accent: #ff5722;
+    --accent-soft: #fff1ea;
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0e0f16;
+      --ink: #f2f2f5;
+      --muted: #a2a6b4;
+      --line: #262836;
+      --tint: #161824;
+      --accent-soft: #2a1710;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .doc { max-width: 760px; margin: 0 auto; padding: 56px 20px 80px; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent); background: var(--accent-soft);
+    padding: 7px 10px; border-radius: 999px;
+  }
+  .tag svg { width: 12px; height: 12px; }
+  h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; letter-spacing: -.02em; margin: 18px 0 12px; }
+  .lede { color: var(--muted); font-size: 18px; margin: 0 0 28px; max-width: 58ch; }
+  .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: 44px; }
+  .meta div { background: var(--paper); padding: 14px 16px; }
+  .meta span { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+  .meta b { font-weight: 600; font-size: 15px; }
+  h2 { font-size: 22px; letter-spacing: -.01em; margin: 44px 0 10px; display: flex; gap: 12px; align-items: baseline; }
+  h2 i { font: 600 13px/1 ui-monospace, SFMono-Regular, Menlo, monospace; font-style: normal; color: var(--accent); }
+  p { margin: 0 0 12px; }
+  .todo {
+    border: 1px dashed var(--line); background: var(--tint);
+    border-radius: var(--radius); padding: 14px 16px; color: var(--muted); font-size: 15px;
+  }
+  .case {
+    display: inline-block; margin: 0 0 16px;
+    font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
+  }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin: 0 0 22px; }
+  .stats div { background: var(--paper); padding: 16px 18px; }
+  .stats b { display: block; font-size: 34px; line-height: 1.05; letter-spacing: -.02em; color: var(--accent); }
+  .stats span { display: block; margin-top: 6px; font-size: 13.5px; line-height: 1.4; color: var(--muted); }
+  .flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
+  .flow span {
+    border: 1px solid var(--line); background: var(--paper);
+    border-radius: 10px; padding: 8px 12px; font-size: 14px; font-weight: 500;
+  }
+  .flow span:last-child { border-color: var(--accent); color: var(--accent); }
+  .flow em { align-self: center; color: var(--muted); font-style: normal; }
+  ul.list { padding-left: 20px; margin: 8px 0 0; color: var(--muted); }
+  ul.list li { margin: 4px 0; }
+  footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+  <main class="doc" id="doc"></main>
+  <script>
+    // One page, eight projects. ?p=<id> picks the project; the ids match
+    // src/data/ai-stack.ts. Every fact here comes from Philip's brief and notes.
+    (function () {
+      var RESULTS_TODO = '[[TODO: the result or metric for this project]]';
+      var PROJECTS = {
+        'attraction-system': {
+          kind: 'GHL System',
+          title: 'Real Estate Attraction System',
+          lede: 'A done-for-you GoHighLevel agent recruiting system for real estate teams, modeled on a top San Diego mega team.',
+          meta: [['For', 'Real estate teams'], ['Built with', 'GHL, CloseBot, Make.com, Slack, ClickUp, Skool']],
+          flow: ['Job board applicant', 'Auto-qualify', 'AI books alignment call', 'Nurture', 'Training onboarding'],
+          sections: [
+            ['What it does', ['Applicants come in from job boards and are qualified automatically by license, location, and experience. An AI appointment setter books the alignment call, nurture sequences keep everyone else warm, and new agents move straight into a training onboarding flow.']],
+            ['How it is sold', ['Three tiers, from a snapshot a team installs themselves up to a fully custom build.']]
+          ],
+          results: {
+            caseStudy: 'Case study: FAM Realty Group, San Diego County',
+            stats: [
+              ['30+', 'Appointments booked a week, in the best months'],
+              ['10', 'Producing agents brought in within 30 days, in 2026'],
+              ['6', 'Teams now running the system, FAM included']
+            ],
+            paragraphs: [
+              'FAM Realty Group, a top San Diego County mega team, has run this system since 2023. Applicants from job posts like Wizehire are qualified automatically, and an AI setter books and reschedules them into the right calendar and the right stage of the application process.',
+              'Recruiting agents with little or no real estate experience brought high churn and hours spent processing people who would not stay. So in 2026 FAM shifted its focus to producing agents, and I made sure the system handled the change. At one point it brought in 10 producing agents in just 30 days.',
+              'The system proved simple and repeatable enough to sell to other teams. That is how Source Systems started: six teams now run it, FAM included.'
+            ]
+          }
+        },
+        'clickup-sync': {
+          kind: 'Integration',
+          title: 'ClickUp to GHL Two-Way Sync',
+          lede: 'Four Make.com scenarios that keep a real estate team’s agent onboarding pipeline in sync between ClickUp and GoHighLevel.',
+          meta: [['For', 'A real estate team'], ['Built with', 'Make.com, ClickUp, GHL']],
+          flow: ['Change in ClickUp or GHL', 'Make.com scenario', 'Other side updated'],
+          sections: [
+            ['What it syncs', ['The agent onboarding pipeline in both directions, including agent stage and office assignment.']],
+            ['Getting it stable', ['The scenarios had inverted route filters and broken field references. Debugging both is what made the sync reliable.']]
+          ]
+        },
+        'client-onboarding': {
+          kind: 'Integration',
+          title: 'Automated Client Onboarding',
+          lede: 'A single survey submission sets up a new client: their GHL sub-account and a dedicated Slack channel.',
+          meta: [['Built with', 'Make.com, GHL API, Slack']],
+          flow: ['Survey submitted', 'GHL sub-account created', 'Slack channel created'],
+          sections: [
+            ['The hard part', ['OAuth scope limits got in the way, so the build switched to Private Integration Tokens.']]
+          ]
+        },
+        'lofty-sync': {
+          kind: 'Integration',
+          title: 'Lofty to GHL Lender Sync',
+          lede: 'When a lender is assigned to a lead in Lofty, the buyer is created as a contact in GoHighLevel automatically.',
+          meta: [['Built with', 'Lofty, Make.com, GHL']],
+          flow: ['Lender assigned in Lofty', 'Make.com', 'Buyer created in GHL'],
+          sections: [
+            ['The hard part', ['Webhook payload limits got in the way, so a Make.com Data Store works around them.']]
+          ]
+        },
+        'ai-setters': {
+          kind: 'AI Agent',
+          title: 'AI Appointment Setters',
+          lede: 'CloseBot knowledge bases and agent flows that book and reschedule calls without human input.',
+          meta: [['For', 'An eXp Realty recruiting partnership and a women’s membership program'], ['Built with', 'CloseBot, GHL']],
+          flow: ['Lead replies', 'AI setter answers', 'Call booked or rescheduled'],
+          sections: []
+        },
+        'voice-ai': {
+          kind: 'AI Agent',
+          title: 'Voice AI Receptionist',
+          lede: 'A voice AI receptionist scoped for a church.',
+          meta: [['For', 'A church'], ['Built with', 'Voice AI, LLMs']],
+          flow: ['Caller', 'Voice AI receptionist', 'Warm transfer to staff'],
+          sections: [
+            ['What was scoped', ['Which LLM to run it on, and the warm transfer logic that hands a caller to the right staff member.']]
+          ]
+        },
+        'semaphore-sms': {
+          kind: 'GHL System',
+          title: 'GHL to Semaphore SMS (Philippines)',
+          lede: 'GoHighLevel connected to Semaphore, a local Philippine SMS provider.',
+          meta: [['Built with', 'GHL, Semaphore, Webhooks']],
+          flow: ['GHL workflow', 'Webhook', 'Semaphore SMS'],
+          sections: [
+            ['What it handles', ['Phone number format conversion between the two systems, and message segment optimization.']]
+          ]
+        },
+        'documentation': {
+          kind: 'Offer',
+          title: 'Documentation as a Service',
+          lede: 'A structured offer for auditing and documenting existing GHL systems for agencies.',
+          meta: [['For', 'Agencies'], ['Built with', 'GHL, Claude']],
+          flow: ['Qualify', 'Propose', 'Audit & document'],
+          sections: [
+            ['What is in it', ['A qualification scorecard, a proposal builder, and deliverable standards for every engagement.']]
+          ]
+        }
+      };
+
+      var id = new URLSearchParams(location.search).get('p');
+      var p = PROJECTS[id] || PROJECTS['attraction-system'];
+      var esc = function (s) {
+        return String(s).replace(/[&<>"]/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+        });
+      };
+
+      var html = '';
+      html += '<span class="tag"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 1.5h5.5L13 5v9.5H4z"/><path d="M9 1.5V5h4"/></svg>Case study · ' + esc(p.kind) + '</span>';
+      html += '<h1>' + esc(p.title) + '</h1>';
+      html += '<p class="lede">' + esc(p.lede) + '</p>';
+      html += '<div class="meta">' + p.meta.map(function (m) {
+        return '<div><span>' + esc(m[0]) + '</span><b>' + esc(m[1]) + '</b></div>';
+      }).join('') + '</div>';
+
+      var n = 0;
+      var num = function () { n += 1; return '<i>0' + n + '</i>'; };
+      html += '<h2>' + num() + 'How it flows</h2>';
+      html += '<div class="flow" aria-label="How it flows">' + p.flow.map(esc).map(function (s) {
+        return '<span>' + s + '</span>';
+      }).join('<em>&rarr;</em>') + '</div>';
+      p.sections.forEach(function (s) {
+        html += '<h2>' + num() + esc(s[0]) + '</h2>';
+        s[1].forEach(function (para) { html += '<p>' + esc(para) + '</p>'; });
+      });
+      html += '<h2>' + num() + 'Results</h2>';
+      if (p.results) {
+        var r = p.results;
+        html += '<p class="case">' + esc(r.caseStudy) + '</p>';
+        html += '<div class="stats">' + r.stats.map(function (s) {
+          return '<div><b>' + esc(s[0]) + '</b><span>' + esc(s[1]) + '</span></div>';
+        }).join('') + '</div>';
+        r.paragraphs.forEach(function (para) { html += '<p>' + esc(para) + '</p>'; });
+      } else {
+        html += '<div class="todo">' + esc(RESULTS_TODO) + '</div>';
+      }
+      html += '<footer>Philip Charles Bumanglag · Systems Integrator &amp; Automation Specialist</footer>';
+
+      document.title = p.title + ' - Philip Bumanglag';
+      document.getElementById('doc').innerHTML = html;
+    })();
+  </script>
+</body>
+</html>

@@ -180,7 +180,7 @@
   color: var(--line-strong);
   transition: color 220ms var(--ease-out), transform 220ms var(--ease-out);
 }
-.agrid__cell--wide:hover .agrid__cell-go { color: var(--orange); transform: translate(2px, -2px); }
+a.agrid__cell:hover .agrid__cell-go { color: var(--orange); transform: translate(2px, -2px); }
 .agrid__cell-mark {
   display: grid;
   place-items: center;

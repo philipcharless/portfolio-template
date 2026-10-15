@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Play, Gauge, Robot, Code } from '@/components/slab'
-import type { Icon } from '@/components/slab'
+import { Play } from '@/components/slab'
+import { CLIENTS } from '@/data/clients'
 
 /**
  * TestimonialsGrid - the Testimonials view as a fixed viewport.
@@ -37,9 +37,9 @@ const CLIPS: Clip[] = [
     id: 'clip-1',
     index: '01',
     src: '',
-    poster: '/placeholders/testimonial-1.jpg',
-    duration: '0:00',
-    kicker: 'Client testimonial',
+    poster: '/testimonial-soon.jpg',
+    duration: '', // e.g. '1:24', once the video is in
+    kicker: '', // the client's name, once the video is in
     width: 720,
     height: 1080,
   },
@@ -47,57 +47,11 @@ const CLIPS: Clip[] = [
     id: 'clip-2',
     index: '02',
     src: '',
-    poster: '/placeholders/testimonial-2.jpg',
-    duration: '0:00',
-    kicker: 'Client testimonial',
+    poster: '/testimonial-soon.jpg',
+    duration: '', // e.g. '1:24', once the video is in
+    kicker: '', // the client's name, once the video is in
     width: 720,
     height: 1080,
-  },
-]
-
-/* The client ledger. `logoSrc` is optional - without it the medallion falls
-   back to the icon. */
-
-type Client = {
-  index: string
-  name: string
-  role: string
-  daily: string
-  work: string[]
-  logoSrc?: string
-  Icon: Icon
-}
-
-const CLIENTS: Client[] = [
-  {
-    index: '01',
-    name: 'Client Name 1',
-    role: 'PLACEHOLDER ROLE',
-    daily:
-      'PLACEHOLDER - tell me what to put here: one or two sentences on what you run or build for this client day to day.',
-    work: ['Tag', 'Tag', 'Tag'],
-    logoSrc: '/placeholders/logo.svg',
-    Icon: Gauge,
-  },
-  {
-    index: '02',
-    name: 'Client Name 2',
-    role: 'PLACEHOLDER ROLE',
-    daily:
-      'PLACEHOLDER - tell me what to put here: one or two sentences on what you run or build for this client day to day.',
-    work: ['Tag', 'Tag', 'Tag'],
-    logoSrc: '/placeholders/logo.svg',
-    Icon: Robot,
-  },
-  {
-    index: '03',
-    name: 'Client Name 3',
-    role: 'PLACEHOLDER ROLE',
-    daily:
-      'PLACEHOLDER - tell me what to put here: one or two sentences on what you run or build for this client day to day.',
-    work: ['Tag', 'Tag', 'Tag'],
-    logoSrc: '/placeholders/logo.svg',
-    Icon: Code,
   },
 ]
 
@@ -120,10 +74,10 @@ export default function TestimonialsGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">Testimonials</span>
         <h1 className="pgrid__title" id="testimonials-title">
-          Your testimonials headline.
+          What clients say.
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one line that introduces the videos and the client list.
+          Video testimonials on the left, the teams and programs I build for on the right.
         </p>
       </header>
 
@@ -155,7 +109,7 @@ export default function TestimonialsGrid() {
                 aria-label={
                   hasVideo
                     ? `Play client testimonial ${clip.index}, ${clip.duration}`
-                    : `Client testimonial ${clip.index}, no video added yet`
+                    : 'Testimonials adding soon'
                 }
               >
                 <img
@@ -172,14 +126,16 @@ export default function TestimonialsGrid() {
                   </span>
                 )}
                 <span className="tgrid__cover-meta" aria-hidden="true">
-                  <span className="tgrid__cover-kicker">
-                    {clip.kicker} {clip.index}
-                  </span>
-                  <span className="tgrid__cover-sub">
-                    {hasVideo
-                      ? `${clip.duration} · Tap to play`
-                      : 'PLACEHOLDER - add your video to public/testimonials/'}
-                  </span>
+                  {hasVideo ? (
+                    <>
+                      <span className="tgrid__cover-kicker">
+                        {clip.kicker} {clip.index}
+                      </span>
+                      <span className="tgrid__cover-sub">{`${clip.duration} · Tap to play`}</span>
+                    </>
+                  ) : (
+                    <span className="tgrid__cover-kicker">Testimonials adding soon</span>
+                  )}
                 </span>
               </button>
             )}
@@ -201,7 +157,7 @@ export default function TestimonialsGrid() {
                 </span>
                 <span className="tgrid__pick-copy">
                   <span className="tgrid__pick-kicker">Testimonial {c.index}</span>
-                  <span className="tgrid__pick-meta">{c.duration}</span>
+                  <span className="tgrid__pick-meta">{c.src ? c.duration : 'Adding soon'}</span>
                 </span>
               </button>
             ))}
@@ -211,8 +167,8 @@ export default function TestimonialsGrid() {
         {/* Right: the client ledger, one row per client. */}
         <div className="tgrid__ledger">
           <div className="tgrid__ledger-head">
-            <h2 className="tgrid__ledger-title">Your client list headline here.</h2>
-            <p className="tgrid__ledger-sub">Short supporting line.</p>
+            <h2 className="tgrid__ledger-title">Who I build for.</h2>
+            <p className="tgrid__ledger-sub">Real estate teams, agencies, and clinics.</p>
           </div>
 
           {/* One plate, three rows split by hairlines. Three boxed cards each

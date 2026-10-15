@@ -505,7 +505,7 @@
   .pgrid__hint { display: none; }
   .bento--projects { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .bento--projects .bento__card--wide,
-  .bento--projects .bento__card[data-id='plan'] { grid-column: span 2; }
+  .bento--projects .bento__card[data-id='systems'] { grid-column: span 2; }
   .bento--projects .bento__stack { grid-column: span 2; }
   .bento--projects .bento__card { padding: 12px; }
   .bento--projects .bento__card--wide .bento__media { height: 150px; }

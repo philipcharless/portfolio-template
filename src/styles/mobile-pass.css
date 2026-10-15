@@ -63,13 +63,13 @@ html { -webkit-tap-highlight-color: transparent; }
      --headline-em, the headline's own width in em at this weight and tracking.
      Retune it when you change the line in profile.ts: set the headline in a
      700-weight system font at 100px with letter-spacing -0.024em, divide its
-     width by 100, add 2% slack. 15.4 fits the placeholder headline in
-     profile.ts (34 characters); a 30-character line needs about 12.8.
+     width by 100, add 2% slack. 16.8 fits the headline in
+     profile.ts (37 characters); a 30-character line needs about 12.8.
      Never larger than home.css's clamp. Not `nowrap`: a longer line, a larger
      text setting or Android font scaling wraps instead of clipping.
      .boot__title is the intro's copy and must match exactly (boot.css: change
      one, change both). */
-  :root { --headline-em: 15.4; }
+  :root { --headline-em: 16.8; }
   .home__title,
   .boot__title { font-size: min(clamp(30px, 3.5vw, 72px), calc((100vw - 2 * var(--panel-x)) / var(--headline-em))); }
 

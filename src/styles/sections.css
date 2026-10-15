@@ -455,6 +455,8 @@
   /* Multi-color brand PNGs render as-is with their native colors preserved. */
 }
 
+.tools-marquee__glyph { color: var(--orange); }
+
 .tools-marquee__label {
   color: var(--navy);
 }

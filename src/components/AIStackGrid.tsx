@@ -1,66 +1,55 @@
 import { aiStack, type StackNode } from '@/data/ai-stack'
 
 /**
- * The AI systems as a logo-first grid, for the Projects pop-up.
+ * The systems as a logo-first grid, for the Projects pop-up.
  *
- * The tree (AIStack.tsx) explains the hierarchy; this view answers the
- * question a hiring reader actually has: what is each thing built ON. Every
- * card leads with the marks of the model, the harness and the services
- * behind it, then the plain-English line, then the stack string from the
- * data file. Names, copy and status come straight from ai-stack.ts; only the
- * logo mapping lives here, and only marks that exist in public/icons.
+ * This view answers the question a client actually has: what is each thing
+ * built ON. Every card leads with the marks of the platforms behind it, then
+ * the plain-English line, then the stack string from the data file. Names,
+ * copy and status come straight from ai-stack.ts; only the logo mapping lives
+ * here, and only marks that exist in public/icons.
  */
 
 type Tool = { name: string; src: string }
 
 const T = {
+  ghl: { name: 'GoHighLevel', src: '/icons/gohighlevel.png' },
+  make: { name: 'Make.com', src: '/icons/make.svg' },
+  clickup: { name: 'ClickUp', src: '/icons/clickup.svg' },
+  slack: { name: 'Slack', src: '/icons/slack.svg' },
+  n8n: { name: 'n8n', src: '/icons/ai/n8n.svg' },
+  zapier: { name: 'Zapier', src: '/icons/ai/zapier.svg' },
   claude: { name: 'Claude', src: '/icons/ai/claude-color.svg' },
   claudeCode: { name: 'Claude Code', src: '/icons/claude-code-logo.png' },
-  openai: { name: 'OpenAI Whisper', src: '/icons/openai.svg' },
-  elevenlabs: { name: 'ElevenLabs', src: '/icons/ai/elevenlabs.svg' },
-  node: { name: 'Node.js', src: '/icons/ai/nodedotjs.svg' },
-  telegram: { name: 'Telegram', src: '/icons/ai/telegram.svg' },
-  slack: { name: 'Slack', src: '/icons/slack.svg' },
-  postgres: { name: 'Postgres + pgvector', src: '/icons/ai/postgresql.svg' },
-  sqlite: { name: 'SQLite FTS5', src: '/icons/ai/sqlite.svg' },
-  nous: { name: 'Nous Hermes', src: '/icons/ai/hermes.svg' },
-  docker: { name: 'Docker', src: '/icons/ai/docker.svg' },
-  ghl: { name: 'GoHighLevel', src: '/icons/gohighlevel.png' },
 } satisfies Record<string, Tool>
 
-/** What each system runs on. Keyed by the node id in ai-stack.ts. These are
- *  example marks - swap them for what each of your systems is built on. */
+/** Logo marks for each system, keyed by the node id in ai-stack.ts. Only
+ *  tools with a mark in public/icons are listed; the full stack is in the
+ *  node's `stack` line. */
 const TOOLS: Record<string, Tool[]> = {
-  'project-a': [T.claude],
-  'project-b': [T.claude, T.claudeCode],
-  'project-c': [T.node, T.elevenlabs, T.openai, T.telegram],
-  'project-d': [T.claude, T.claudeCode],
-  'project-e': [T.claude, T.postgres, T.slack],
-  'project-f': [T.claude, T.sqlite],
-  'project-g': [T.claude, T.ghl],
-  'project-h': [T.claude, T.elevenlabs],
-  'project-i': [T.claude],
-  'project-j': [T.nous, T.telegram, T.docker],
-  'project-k': [T.nous, T.telegram],
+  'attraction-system': [T.ghl, T.make, T.slack, T.clickup],
+  'semaphore-sms': [T.ghl],
+  'clickup-sync': [T.make, T.clickup, T.ghl],
+  'client-onboarding': [T.make, T.ghl, T.slack],
+  'lofty-sync': [T.make, T.ghl],
+  'ai-setters': [T.ghl],
+  documentation: [T.ghl, T.claude],
 }
 
-/** The harnesses everything above is built with. */
-const HARNESS: Tool[] = [
-  { name: 'Claude Code', src: '/icons/claude-code-logo.png' },
-  { name: 'Codex', src: '/icons/ai/codex.svg' },
-  { name: 'Cursor', src: '/icons/ai/cursor.svg' },
-  { name: 'Hermes', src: '/icons/ai/hermes.svg' },
-]
+/** The platforms everything above is built on. */
+const HARNESS: Tool[] = [T.ghl, T.make, T.n8n, T.zapier, T.claudeCode]
 
 type Group = { title: string; what: string; systems: StackNode[] }
 
 /** Flatten the tree into groups: a branch with children is a group, a leaf
- *  branch (one with a status) is a group of itself plus any children. */
+ *  branch (one with a status, or with no children) is a group of itself plus
+ *  any children. */
 function groups(root: StackNode): Group[] {
   return (root.children ?? []).map((branch) => ({
     title: branch.name,
     what: branch.what,
-    systems: branch.status ? [branch, ...(branch.children ?? [])] : (branch.children ?? []),
+    systems:
+      branch.status || !branch.children?.length ? [branch, ...(branch.children ?? [])] : branch.children,
   }))
 }
 
@@ -68,7 +57,10 @@ function Card({ n }: { n: StackNode }) {
   const tools = TOOLS[n.id] ?? []
   return (
     <li className="aig__card">
-      <div className="aig__marks" aria-label={`Built with ${tools.map((t) => t.name).join(', ')}`}>
+      <div
+        className="aig__marks"
+        aria-label={tools.length ? `Built with ${tools.map((t) => t.name).join(', ')}` : undefined}
+      >
         {tools.map((t) => (
           <span key={t.name} className="aig__mark" title={t.name}>
             <img src={t.src} alt="" width={22} height={22} loading="lazy" decoding="async" />
@@ -86,13 +78,6 @@ function Card({ n }: { n: StackNode }) {
       </h4>
       <p className="aig__what">{n.what}</p>
       {n.stack && <p className="aig__stack">{n.stack}</p>}
-      {tools.length > 0 && (
-        <ul className="aig__tools" role="list">
-          {tools.map((t) => (
-            <li key={t.name}>{t.name}</li>
-          ))}
-        </ul>
-      )}
     </li>
   )
 }
@@ -102,7 +87,7 @@ export default function AIStackGrid() {
     <div className="aig">
       <header className="aig__head">
         <div className="aig__head-text">
-          <span className="aig__eyebrow">Placeholder category</span>
+          <span className="aig__eyebrow">Systems</span>
           <h3 className="aig__title">{aiStack.what}</h3>
         </div>
         <div className="aig__harness" aria-label="Built with">

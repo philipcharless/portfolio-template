@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { PaperPlaneTilt, CheckCircle, WarningCircle, EnvelopeSimple, ArrowUpRight, CaretDown } from '@/components/slab'
+import { PaperPlaneTilt, CheckCircle, WarningCircle, EnvelopeSimple, CalendarCheck, ArrowUpRight, CaretDown } from '@/components/slab'
 import { FAQS } from '@/data/faqs'
 import { profile } from '@/data/profile'
 import { readLead, submitLead, SubmitError, MAX_NAME, MAX_EMAIL, MAX_MESSAGE, type SubmitResult } from '@/lib/contact'
@@ -60,10 +60,10 @@ export default function ContactGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">FAQs / Contact</span>
         <h1 className="pgrid__title" id="contact-title">
-          Your contact headline goes here.
+          Tell me what you are building.
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one or two lines inviting people to write and saying what they get back.
+          Write about your business and the system you need, or book a call directly.
         </p>
       </header>
 
@@ -108,6 +108,10 @@ export default function ContactGrid() {
               <EnvelopeSimple size={16} weight="fill" aria-hidden="true" />
               <span>{profile.email}</span>
             </a>
+            <a className="cgrid__mail" href={profile.bookingUrl} target="_blank" rel="noopener noreferrer">
+              <CalendarCheck size={16} weight="fill" aria-hidden="true" />
+              <span>Book a call</span>
+            </a>
             <ul className="cgrid__socials" role="list">
               {profile.socials.map((s) => (
                 <li key={s.label}>
@@ -132,8 +136,8 @@ export default function ContactGrid() {
               </h2>
               <p className="cgrid__done-body">
                 {status.via === 'webhook'
-                  ? 'It is in my inbox and on my phone. You will hear back within one business day.'
-                  : 'The message is laid out and addressed. Press send there and you will hear back within one business day.'}
+                  ? 'It is in my inbox. I will reply by email.'
+                  : 'The message is laid out and addressed. Press send there and I will reply by email.'}
               </p>
               <button type="button" className="cgrid__again" onClick={() => setStatus({ kind: 'idle' })}>
                 Write another
@@ -197,7 +201,9 @@ export default function ContactGrid() {
                     {status.note}
                   </span>
                 ) : (
-                  <span className="cgrid__hint">Short reassurance line, e.g. your reply time.</span>
+                  <span className="cgrid__hint">
+                    Prefer a call? <a href={profile.bookingUrl} target="_blank" rel="noopener noreferrer">Book one here.</a>
+                  </span>
                 )}
               </div>
             </form>
