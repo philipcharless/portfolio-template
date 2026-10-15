@@ -44,7 +44,7 @@ export type Profile = {
 }
 
 export const profile: Profile = {
-  name: 'Philip Charles Bumanglag',
+  name: 'Philip Bumanglag',
   firstName: 'Philip',
   handle: 'Partner at Source Systems',
   role: 'Systems Integrator & Automation Specialist',
